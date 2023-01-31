@@ -1,7 +1,7 @@
-/DDPS.Web/bin/
-/DDPS.Web/obj/
-/DDPS.Api/obj/
-/DDPS.Api/bin/
-/DBMS.Console/bin/
-/DBMS.Console/obj/
+/Web/bin/
+/Web/obj/
+/Api/obj/
+/Api/bin/
+/Console/bin/
+/Console/obj/
 /.vs
