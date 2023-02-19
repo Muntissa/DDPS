@@ -10,5 +10,7 @@ namespace DDPS.Api.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public virtual List<Apartaments> Apartaments { get; set; } = new();
     }
 }

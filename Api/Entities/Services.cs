@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Castle.Components.DictionaryAdapter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,8 @@ namespace DDPS.Api.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public int Price { get; set; }
+
+        public virtual List<Apartaments> Apartaments { get; set; } = new();
+        public virtual List<Bookings> Bookings { get; set; } = new();
     }
 }
