@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Bookings>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Главная";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Главная</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Создать новую запись</a>
 </p>
 <table class="table">
     <thead>
@@ -53,12 +53,12 @@
                 @Html.DisplayFor(modelItem => item.Apartament.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.FirstName)
+                @Html.DisplayFor(modelItem => item.Client.SecondName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детальная информация</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удаление</a>
             </td>
         </tr>
 }

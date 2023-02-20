@@ -82,7 +82,7 @@ namespace DDPS.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description", apartaments.TariffId);
+            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Name", apartaments.TariffId);
             return View(apartaments);
         }
 
@@ -118,7 +118,7 @@ namespace DDPS.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description", apartaments.TariffId);
+            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Name", apartaments.TariffId);
             return View(apartaments);
         }
 

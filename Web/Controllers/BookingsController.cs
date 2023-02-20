@@ -49,8 +49,8 @@ namespace DDPS.Web.Controllers
         // GET: Bookings/Create
         public IActionResult Create()
         {
-            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Id");
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "FirstName");
+            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number");
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace DDPS.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Id", bookings.ApartamentId);
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "FirstName", bookings.ClientId);
+            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
             return View(bookings);
         }
 
@@ -85,8 +85,8 @@ namespace DDPS.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Id", bookings.ApartamentId);
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "FirstName", bookings.ClientId);
+            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
             return View(bookings);
         }
 
@@ -122,8 +122,8 @@ namespace DDPS.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Id", bookings.ApartamentId);
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "FirstName", bookings.ClientId);
+            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
             return View(bookings);
         }
 
