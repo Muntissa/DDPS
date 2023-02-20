@@ -12,6 +12,4 @@ using (var context = new HotelContext())
         else
             Console.WriteLine($"{client.Id} - {client.LastName}");
     }
-        
-
 }

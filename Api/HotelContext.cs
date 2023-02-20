@@ -13,6 +13,7 @@ namespace DDPS.Api
         public DbSet<Tariffs> Tariffs => Set<Tariffs>();
 
         public HotelContext() => Database.EnsureCreated();
+
         protected override void OnConfiguring(DbContextOptionsBuilder options) { options.UseLazyLoadingProxies().UseSqlite("Data Source = HotelDB.db"); options.LogTo(message => System.Diagnostics.Debug.WriteLine(message)); }
     }
 }
