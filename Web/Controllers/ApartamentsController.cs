@@ -48,7 +48,7 @@ namespace DDPS.Web.Controllers
         // GET: Apartaments/Create
         public IActionResult Create()
         {
-            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description");
+            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace DDPS.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description", apartaments.TariffId);
+            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Name", apartaments.TariffId);
             return View(apartaments);
         }
 

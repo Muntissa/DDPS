@@ -1,6 +1,7 @@
 ﻿using Castle.Components.DictionaryAdapter;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace DDPS.Api.Entities
         public int Area { get; set; }
         public int Price { get; set; }
 
+        [Display(Name = "Тариф")]
         public int? TariffId { get; set; }
         public virtual Tariffs? Tariff { get; set; }
 
