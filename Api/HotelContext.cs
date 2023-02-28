@@ -15,5 +15,7 @@ namespace DDPS.Api
         public HotelContext() => Database.EnsureCreated();
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) { options.UseLazyLoadingProxies().UseSqlite("Data Source = HotelDB.db"); options.LogTo(message => System.Diagnostics.Debug.WriteLine(message)); }
+
+        /*protected override void OnModelCreating()*/
     }
 }
