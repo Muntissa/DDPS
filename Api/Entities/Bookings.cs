@@ -20,12 +20,7 @@ namespace DDPS.Api.Entities
         public DateTime EndTime { get; set; }
 
         [Display(Name = "Общая цена")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int TotalPrice 
-        {
-            get => (Apartament.Price + Services.Select(s => s.Price).Sum()) * (int)(EndTime - StartTime).TotalDays;
-            private set { }
-        }
+        public int? TotalPrice { get; set; }
 
         [Display(Name = "Бронирование")]
         public bool Reservation { get; set; }

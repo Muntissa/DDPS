@@ -1,0 +1,19 @@
+﻿<h2>Оформление заказа: выбор апартаментов</h2>
+
+<form asp-action="ChooseApartament" class="form-group">
+    <input type="hidden" name="ClientId" value="@ViewBag.ClientId"/>
+
+    <div class="form-group">
+        <label class="control-label">Фамилия покупателя:</label>\
+        <label class="control-label">@ViewBag.Client.LastName</label>
+    </div>
+
+    <div class="form-inline">
+        <label class="control-label col-md-4">Выберите апартаменты:</label>
+    </div>
+
+    <div class="form-group pt-3">
+        <input type="submit" value="Выбрать" class="btn btn-primary"/>
+    </div>
+
+</form>

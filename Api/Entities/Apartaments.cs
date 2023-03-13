@@ -23,16 +23,11 @@ namespace DDPS.Api.Entities
         public int Area { get; set; }
 
         [Display(Name = "Цена")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int Price 
-        { 
-            get => (Tariff.Price * Services.Select(s => s.Price).Sum()) / Area; 
-            private set { } 
-        }
+        public int Price { get; set; }
 
-        [Display(Name = "Тариф"), Required]
+        [Display(Name = "Тариф")]
         public int? TariffId { get; set; }
-        public virtual Tariffs Tariff { get; set; }
+        public virtual Tariffs? Tariff { get; set; }
 
         public virtual List<Facilities> Facilities { get; set; } = new();
         public virtual List<Services> Services { get; set; } = new();

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace DDPS.Web.Controllers
 {
@@ -22,10 +23,38 @@ namespace DDPS.Web.Controllers
         // GET: Bookings
         public async Task<IActionResult> Index()
         {
-            var hotelContext = _context.Bookings.Include(b => b.Apartament).Include(b => b.Client);
-            return View(await hotelContext.ToListAsync());
+            /*var hotelContext = _context.Bookings.Include(b => b.Apartament).Include(b => b.Client);*/
+            return View(await _context.Clients.ToListAsync());
+            /*return View(await hotelContext.ToListAsync());*/
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(int clientId)
+        {
+            var client = await _context.Clients.FindAsync(clientId);
+            if (client is null)
+                return NotFound();
+
+            ViewBag.ClientId = clientId;
+            ViewBag.Client = client;
+            return View("ChooseApartament");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChooseApartament(int clientId)
+        {
+            var client = await _context.Clients.FindAsync(clientId);
+
+            var apartaments = await _context.Apartaments
+                .Include(s => s.Services)
+                .Include(t => t.Tariff)
+                .ToListAsync();
+
+            ViewBag.ClientId = clientId;
+            ViewBag.Client = client.LastName;
+            return View("ChooseDate");
+                
+        }
         // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -69,7 +98,7 @@ namespace DDPS.Web.Controllers
             }
             ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
-            return View(bookings);
+            return View(nameof(Index));
         }
 
         // GET: Bookings/Edit/5
