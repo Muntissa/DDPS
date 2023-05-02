@@ -23,9 +23,12 @@ namespace DDPS.Web.Controllers
         // GET: Bookings
         public async Task<IActionResult> Index()
         {
-            /*var hotelContext = _context.Bookings.Include(b => b.Apartament).Include(b => b.Client);*/
-            return View(await _context.Clients.ToListAsync());
-            /*return View(await hotelContext.ToListAsync());*/
+            var context = _context.Bookings.Include(a => a.Apartament).ThenInclude(f => f.Facilities)
+                .Include(a => a.Apartament).ThenInclude(s => s.Services)
+                .Include(c => c.Client)
+                .Include(s => s.Services);
+
+            return View(await context.ToListAsync());
         }
 
         [HttpPost]
@@ -78,9 +81,7 @@ namespace DDPS.Web.Controllers
         // GET: Bookings/Create
         public IActionResult Create()
         {
-            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number");
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName");
-            return View();
+            return RedirectToAction("FirstStepClient", "NewBooking");
         }
 
         // POST: Bookings/Create

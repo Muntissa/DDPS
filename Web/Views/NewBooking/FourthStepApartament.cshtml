@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DDPS.Api.Entities.Apartaments>
+
+<h1>Выбор апартаментов</h1>
+
+@*<div class="form-group">
+    <a asp-controller="Employees" asp-action="Create" asp-route-fromSelectEmployee="true" class="btn btn-info">Добавить нового работника</a>
+</div>*@
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tariff.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayName("Удобства")
+        </th>
+        <th>
+            @Html.DisplayName("Включенные услуги")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tariff.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                </td>
+                <td>
+                    @foreach (var facility in item.Facilities)
+                    {
+                        @Html.DisplayFor(modelItem => facility.Name)
+                    } 
+                </td>
+                <td>
+                    @foreach (var service in item.Facilities)
+                    {
+                        @Html.DisplayFor(modelItem => service.Name)
+                    } 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                @using (Html.BeginForm())
+                {
+                     <div>
+                        <input type="hidden" name="clientId" value="@item.Id" />
+                        <input type="submit" value="Выбрать" class="btn btn-primary" />
+                     </div>
+                }
+                </td>
+            </tr>
+        }
+    }
+</table>

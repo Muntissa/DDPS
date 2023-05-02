@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DDPS.Api.Entities.Clients>
+
+<h1>Выбор клиента</h1>
+
+@*<div class="form-group">
+    <a asp-controller="Employees" asp-action="Create" asp-route-fromSelectEmployee="true" class="btn btn-info">Добавить нового работника</a>
+</div>*@
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("ФИО")
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        <div>
+                            <input type="hidden" name="clientId" value="@item.Id" />
+                            <input type="submit" value="Выбрать" class="btn btn-primary" />
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    }
+</table>

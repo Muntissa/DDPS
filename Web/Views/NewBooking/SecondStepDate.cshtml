@@ -1,0 +1,15 @@
+﻿<h1>Выбор даты</h1>
+
+@*<div class="form-group">
+    <a asp-controller="Employees" asp-action="Create" asp-route-fromSelectEmployee="true" class="btn btn-info">Добавить нового работника</a>
+</div>*@
+
+@using (Html.BeginForm())
+{
+    <div>
+        <input type="date" name="startDate" required/>
+        <input type="date" name="endDate" required/>
+        <input type="submit" value="Далее" class="btn btn-primary" />
+    </div>
+}
+

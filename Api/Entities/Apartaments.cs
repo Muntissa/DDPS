@@ -16,8 +16,8 @@ namespace DDPS.Api.Entities
         [Display(Name = "Порядковый номер")]
         public int Number { get; set; }
 
-        [Display(Name = "Картинка")]
-        public string? ImageUrl { get; set; }
+        [Display(Name = "Новое фото")]
+        public string? Photo { get; set; }
 
         [Display(Name = "Площадь")]
         public int Area { get; set; }
@@ -28,6 +28,8 @@ namespace DDPS.Api.Entities
         [Display(Name = "Тариф")]
         public int? TariffId { get; set; }
         public virtual Tariffs? Tariff { get; set; }
+        
+
 
         public virtual List<Facilities> Facilities { get; set; } = new();
         public virtual List<Services> Services { get; set; } = new();
