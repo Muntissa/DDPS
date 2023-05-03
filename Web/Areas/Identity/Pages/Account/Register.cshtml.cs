@@ -137,10 +137,12 @@ namespace DDPS.Web.Areas.Identity.Pages.Account
                     await _roleManager.CreateAsync(new IdentityRole("coach"));
                 if (!await _roleManager.RoleExistsAsync("guest"))
                     await _roleManager.CreateAsync(new IdentityRole("guest"));
-                await _userManager.AddToRoleAsync(user, "guest");
+               
 
                 if (result.Succeeded)
-                {
+                { 
+                    await _userManager.AddToRoleAsync(user, "guest");
+
                     _logger.LogInformation("User created a new account with password.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
