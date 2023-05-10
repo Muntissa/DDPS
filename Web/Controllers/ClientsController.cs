@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
+using DDPS.Api.TempModels;
 
 namespace DDPS.Web.Controllers
 {
@@ -42,7 +38,13 @@ namespace DDPS.Web.Controllers
                 return NotFound();
             }
 
-            return View(clients);
+            ClientDetailsModel clientDetailsModel = new()
+            {
+                Client = clients,
+                Bookings = _context.Bookings.Where(c => c.ClientId == id).ToList(),
+            };
+
+            return View(clientDetailsModel);
         }
 
         // GET: Clients/Create

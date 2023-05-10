@@ -12,9 +12,6 @@
             @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Tariff.Name)
         </th>
         <th>
@@ -38,9 +35,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Number)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Photo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Tariff.Name)
@@ -67,7 +61,7 @@
                 @using (Html.BeginForm())
                 {
                      <div>
-                        <input type="hidden" name="clientId" value="@item.Id" />
+                        <input type="hidden" name="apartament" value="@item.Id" />
                         <input type="submit" value="Выбрать" class="btn btn-primary" />
                      </div>
                 }

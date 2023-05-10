@@ -22,9 +22,6 @@ namespace DDPS.Api.Entities
         [Display(Name = "Общая цена")]
         public int? TotalPrice { get; set; }
 
-        [Display(Name = "Бронирование")]
-        public bool Reservation { get; set; }
-
         [Display(Name = "Апартаменты")]
         public int? ApartamentId { get; set; }
         public virtual Apartaments? Apartament { get; set; }

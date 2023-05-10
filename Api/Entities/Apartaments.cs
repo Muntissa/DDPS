@@ -25,6 +25,9 @@ namespace DDPS.Api.Entities
         [Display(Name = "Цена")]
         public int Price { get; set; }
 
+        [Display(Name = "Зарезервировано")]
+        public bool Reservation { get; set; } = false;
+
         [Display(Name = "Тариф")]
         public int? TariffId { get; set; }
         public virtual Tariffs? Tariff { get; set; }

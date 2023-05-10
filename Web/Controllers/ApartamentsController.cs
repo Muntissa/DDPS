@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
 using System.Numerics;
+using Microsoft.Extensions.Hosting;
 
 namespace DDPS.Web.Controllers
 {
@@ -20,7 +21,21 @@ namespace DDPS.Web.Controllers
         {
             _context = context;
             _appEnvironment = appEnviroment;
-        } 
+        }
+
+        public IActionResult GetImage(int id)
+        {
+            var entity = _context.Apartaments.FirstOrDefault(e => e.Id == id);
+
+            if (entity != null && !string.IsNullOrEmpty(entity.Photo))
+            {
+                var imagePath = Path.Combine(_appEnvironment.ContentRootPath,"wwwroot/", entity.Photo);
+/*                var imageFileStream = System.IO.File.OpenRead(imagePath);*/
+/*                return File(imageFileStream, "image/jpeg");*/
+            }
+
+            return NotFound();
+        }
 
         // GET: Apartaments
         public async Task<IActionResult> Index()

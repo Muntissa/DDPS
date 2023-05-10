@@ -62,9 +62,10 @@
                 }
             </td>
             <td>
-                @foreach (var service in item.Apartament.Services)
+                @foreach (var service in item.Services)
                 {
                     @Html.DisplayFor(modelItem => service.Name)
+                    @Environment.NewLine
                 }
             </td>
             <td>
