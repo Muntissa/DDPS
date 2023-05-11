@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Clients>
 
 @{
-    ViewData["Title"] = "Главная";
+    ViewData["Title"] = "Клиенты";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Главная</h1>
 
 <p>
-    <a asp-action="Create">Создать новую запись</a>
+    <a asp-action="Create" class="btn btn-success">Создать нового клиента</a>
 </p>
 <table class="table">
     <thead>

@@ -1,65 +1,106 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Apartaments>
 
 @{
-    ViewData["Title"] = "Главная";
+    ViewData["Title"] = "Апартаменты";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-success">Создать новые апартаменты</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Area)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tariff)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            int counter = 0;
-            @foreach (var item in Model)
-            {
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Апартаменты</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="Create" class="btn btn-success">Создать новые апартаменты</a>
+        </div>
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 text-end">
+            <a asp-action="GetTariffTables" class="btn btn-success">Все тарифы</a>
+        </div>
+    </div>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Number)
-                    </td>
-                    <td>
-                        <img src="@Url.Action("GetImage", "Apartaments", new { id = item.Id })" alt="Image">
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Area)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tariff.Description)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Площадь (кв.м)</th>
+                    <th scope="col">Цена (руб/мес)</th>
+                    <th scope="col">Тариф</th>
+                    <th scope="col"></th>
                 </tr>
-                counter++;
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Number</td>
+                        <td>
+                            <img class="img-thumbnail" src="@item.Photo" alt="фото апартаментов" style="max-width: 100px; height: auto;">
+                        </td>
+                        <td>@item.Area</td>
+                        <td>@item.Price</td>
+                        <td>@item.Tariff?.Description</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2">Изменить</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная информация</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+@*@model IEnumerable<DDPS.Api.Entities.Apartaments>
+
+@{
+    ViewData["Title"] = "Апартаменты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Апартаменты</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="Create" class="btn btn-success">Создать новые апартаменты</a>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Порядковый номер</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Площадь</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Тариф</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Number</td>
+                        <td>
+                            <img class="img-thumbnail" src="@item.Photo" alt="фото апартаментов" style="max-width: 100px; height: auto;">
+                        </td>
+                        <td>@item.Area</td>
+                        <td>@item.Price</td>
+                        <td>@item.Tariff?.Description</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2">Изменить</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная информация</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+*@

@@ -66,9 +66,13 @@ namespace DDPS.Web.Controllers
 
         // GET: Apartaments/Create
         public IActionResult Create()
-        { 
-            ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description");
-            return View();
+        {
+            return RedirectToAction("FirstStep", "NewApartament");
+        }
+
+        public IActionResult GetTariffTables()
+        {
+            return RedirectToAction("Index", "Tariffs");
         }
 
         // POST: Apartaments/Create
@@ -199,7 +203,13 @@ namespace DDPS.Web.Controllers
             var apartaments = await _context.Apartaments.FindAsync(id);
             if (apartaments != null)
             {
+                var booking = _context.Bookings.Where(a => a.ApartamentId == id).FirstOrDefault();
+
+                if (booking != null)
+                    _context.Bookings.Remove(booking);
+
                 _context.Apartaments.Remove(apartaments);
+                
             }
             
             await _context.SaveChangesAsync();

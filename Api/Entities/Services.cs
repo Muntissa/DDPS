@@ -22,7 +22,7 @@ namespace DDPS.Api.Entities
         [Display(Name = "Цена")]
         public int Price { get; set; }
 
-        public virtual List<Apartaments> Apartaments { get; set; } = new();
-        public virtual List<Bookings> Bookings { get; set; } = new();
+        public virtual List<Apartaments>? Apartaments { get; set; } = new();
+        public virtual List<Bookings>? Bookings { get; set; } = new();
     }
 }

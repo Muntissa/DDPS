@@ -15,6 +15,6 @@ namespace DDPS.Api.Entities
         [Display(Name = "Название")]
         public string Name { get; set; }
 
-        public virtual List<Apartaments> Apartaments { get; set; } = new();
+        public virtual List<Apartaments>? Apartaments { get; set; } = new();
     }
 }

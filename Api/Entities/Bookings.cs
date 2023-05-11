@@ -30,6 +30,6 @@ namespace DDPS.Api.Entities
         public int? ClientId { get; set; }
 
         public virtual Clients? Client { get; set; }
-        public virtual List<Services> Services { get; set; } = new();
+        public virtual List<Services>? Services { get; set; } = new();
     }
 }

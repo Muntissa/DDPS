@@ -1,4 +1,71 @@
 ﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>АРМ администратора гостиницы</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">АРМ администратора гостиницы</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Главная</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTables" role="button" data-bs-toggle="dropdown" aria-expanded="false">Таблицы</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownTables">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Apartaments" asp-action="Index">Апартаменты</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Bookings" asp-action="Index">Заказы</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Clients" asp-action="Index">Клиенты</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Facilities" asp-action="Index">Удобства</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Services" asp-action="Index">Услуги</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Tariffs" asp-action="Index">Тарифы</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial"></partial>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @RenderBody()
+        </div>
+    </div>
+</main>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        <p class="float-end">
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </p>
+        <p>&copy; 2023 - Web</p>
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+@*
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,12 +77,10 @@
 </head>
 <body>
     <header>
-        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-            <partial name="_LoginPartial"></partial>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">АРМ администратора гостиницы</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,7 +101,9 @@
                         </li>
                     </ul>
                 </div>
-
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial"></partial>
+                </div>
             </div>
         </nav>
     </header>
@@ -56,4 +123,4 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html>*@

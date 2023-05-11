@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Bookings>
 
+@{
+    ViewData["Title"] = "Заказы";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <h1>Заказы</h1>
 
-<a asp-action="Create">Новый заказ</a>
+<a asp-action="Create" class="btn btn-success">Новый заказ</a>
 </p>
 <table class="table table-bordered table-hover">
     <tr>

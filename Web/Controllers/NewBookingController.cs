@@ -61,7 +61,7 @@ namespace DDPS.Web.Controllers
         #region SelectApartament
         public async Task<IActionResult> FourthStepApartament()
         {
-            return View(await _context.Apartaments.Where(a => /*a.Reservation == false*/ a.Tariff.Id == (int)TempData.Peek("tariffId")).Include(t => t.Tariff).ToListAsync());
+            return View(await _context.Apartaments.Where(a => a.Reservation == false && a.Tariff.Id == (int)TempData.Peek("tariffId")).Include(t => t.Tariff).ToListAsync());
         }
         [HttpPost]
         public async Task<IActionResult> FourthStepApartament(int apartament)
@@ -94,6 +94,8 @@ namespace DDPS.Web.Controllers
                 EndTime = (DateTime)TempData.Peek("endDate"),
                 Services = _context.Services.Where(s => servicesIds.Contains(s.Id)).ToList(),
             };
+
+            _context.Apartaments.Where(a => a.Id == (int)TempData.Peek("apartamentId")).First().Reservation = true;
 
             _context.Bookings.Add(newBooking);
             _context.SaveChanges();

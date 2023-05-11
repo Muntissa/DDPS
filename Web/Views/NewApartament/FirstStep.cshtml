@@ -1,0 +1,21 @@
+﻿@model DDPS.Api.Entities.Apartaments
+
+@{
+    ViewData["Title"] = "Создание апартаментов";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <label for="basic-addon1" class="form-label">Введите порядковый номер</label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="apartamentNumber" placeholder="Порядковый номер" aria-label="Порядковый номер" aria-describedby="basic-addon1">
+    </div>
+    <label for="basic-addon2" class="form-label">Введите площадь</label>
+    <div class="input-group mb-3">
+        <input type="number" class="form-control" name="apartamentArea" placeholder="Площадь" aria-label="Площадь" aria-describedby="basic-addon2">
+        <span class="input-group-text" id="basic-addon2">м^2</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+

@@ -1,49 +1,56 @@
 ﻿@model DDPS.Api.Entities.Apartaments
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детальная информация";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Детальная информация</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-subtitle mb-4 text-muted">Апартаменты №@Model.Number</h4>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Номер апартаментов:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Number)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Фото апартаментов:</div>
+                        <div class="col-sm-8 text-center">
+                            <img class="img-fluid rounded" src="@Model.Photo" alt="Фото апартаментов" style="max-width: 300px;">
+                        </div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Площадь:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Area) м²</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Стоимость аренды:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Price) руб./сутки</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Тариф:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Tariff.Name)</div>
+                    </div>
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-sm-12 text-center">
+                            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning mb-3">Изменить</a>
+                            <br />
+                            <a asp-action="Index" class="btn btn-primary">Вернуться к полному списку</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div>
-    <h4>Apartaments</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Area)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Area)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tariff)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tariff.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
