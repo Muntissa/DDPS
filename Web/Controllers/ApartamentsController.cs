@@ -217,6 +217,69 @@ namespace DDPS.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult DeleteFacility(int facilityId, int apartamentId)
+        {
+            var facilityToDelete = _context.Facilities.Find(facilityId);
+            var apartament = _context.Apartaments.Find(apartamentId);
+
+            apartament.Facilities.Remove(facilityToDelete);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddFacilities(int apartamentId)
+        {
+            var inputApartament = _context.Set<Apartaments>().Where(a => a.Id == apartamentId).First();
+
+            return View(await _context.Facilities.Where(f => !inputApartament.Facilities.Contains(f)).ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFacilities(int apartamentId, List<int> facilitiesIds)
+        {
+            var inputApartament = _context.Set<Apartaments>().Where(a => a.Id == apartamentId).First();
+
+            inputApartament.Facilities.AddRange(_context.Facilities.Where(s => facilitiesIds.Contains(s.Id)).ToList());
+
+            _context.SaveChanges();
+            return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
+        }
+
+        public IActionResult DeleteService(int serviceId, int apartamentId)
+        {
+            var serviceToDelete = _context.Services.Find(serviceId);
+            var apartament = _context.Apartaments.Find(apartamentId);
+
+            apartament.Services.Remove(serviceToDelete);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddServices(int apartamentId)
+        {
+            var inputApartament = _context.Set<Apartaments>().Where(a => a.Id == apartamentId).First();
+
+            return View(await _context.Services.Where(f => !inputApartament.Services.Contains(f)).ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddServices(int apartamentId, List<int> servicesIds)
+        {
+            var inputApartament = _context.Set<Apartaments>().Where(a => a.Id == apartamentId).First();
+
+            inputApartament.Services.AddRange(_context.Services.Where(s => servicesIds.Contains(s.Id)).ToList());
+
+            _context.SaveChanges();
+            return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
+        }
+
+
         private bool ApartamentsExists(int id)
         {
             return (_context.Apartaments?.Any(e => e.Id == id)).GetValueOrDefault();

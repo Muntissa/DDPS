@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DDPS.Api.Entities.Facilities>
+
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var facility in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="facilitiesIds" value="@facility.Id" /></td>
+                    <td>@facility.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit">Выбрать</button>
+</form>
