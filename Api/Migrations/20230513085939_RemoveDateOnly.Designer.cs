@@ -3,6 +3,7 @@ using System;
 using DDPS.Api;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DDPS.Api.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    partial class HotelContextModelSnapshot : ModelSnapshot
+    [Migration("20230513085939_RemoveDateOnly")]
+    partial class RemoveDateOnly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,9 +112,6 @@ namespace DDPS.Api.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("TEXT");
 
@@ -125,25 +125,6 @@ namespace DDPS.Api.Migrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("DDPS.Api.Entities.BookingsArchive", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("BookingId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("InActiveTime")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("BokchesArchive");
                 });
 
             modelBuilder.Entity("DDPS.Api.Entities.Clients", b =>
@@ -301,15 +282,6 @@ namespace DDPS.Api.Migrations
                     b.Navigation("Apartament");
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("DDPS.Api.Entities.BookingsArchive", b =>
-                {
-                    b.HasOne("DDPS.Api.Entities.Bookings", "Booking")
-                        .WithMany()
-                        .HasForeignKey("BookingId");
-
-                    b.Navigation("Booking");
                 });
 #pragma warning restore 612, 618
         }

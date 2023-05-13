@@ -5,6 +5,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Клиенты</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="Create" class="btn btn-success">Создать нового клиента</a>
+        </div>
+    </div>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Отчество</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Телефон</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SecondName</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2">Изменить</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная информация</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+@*@model IEnumerable<DDPS.Api.Entities.Clients>
+
+@{
+    ViewData["Title"] = "Клиенты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h1>Главная</h1>
 
 <p>
@@ -57,4 +109,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

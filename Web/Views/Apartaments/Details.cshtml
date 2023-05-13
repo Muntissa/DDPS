@@ -30,7 +30,7 @@
                     </div>
                     <div class="row mb-4 border-bottom">
                         <div class="col-sm-4 fw-bold">Стоимость аренды:</div>
-                        <div class="col-sm-8">@Html.DisplayFor(model => model.Price) руб./сутки</div>
+                        <div class="col-sm-8">@(Model.Tariff.Price + (Model.Area * 50) + (int)(0.5 * Model.Services.Sum(s => s.Price))) руб./сутки</div>
                     </div>
                     <div class="row mb-4 border-bottom">
                         <div class="col-sm-4 fw-bold">Тариф:</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DDPS.Api.Entities.BookingsArchive>
+
+@{
+    ViewData["Title"] = "Архив заказов";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Архив заказов</h1>
+    <div class="row"></div>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Номер аппартаментов</th>
+                    <th scope="col">Клиент</th>
+                    <th scope="col">Заказные услуги</th>
+                    <th scope="col">Начальная дата</th>
+                    <th scope="col">Конечная дата</th>
+                    <th scope="col">Дата закрытия заказа</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Booking.Apartament.Number</td>
+                        <td>@item.Booking.Client.SecondName @item.Booking.Client.FirstName @item.Booking.Client.LastName</td>
+                        <td>
+                            @foreach (var service in item.Booking.Services)
+                            {
+                                @service.Name
+                                @Environment.NewLine
+                            }
+                        </td>
+                        <td>@item.Booking.StartTime</td>
+                        <td>@item.Booking.EndTime</td>
+                        <td>@item.InActiveTime</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+@*@model IEnumerable<DDPS.Api.Entities.BookingsArchive>
+
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Апартаменты</h1>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Номер аппартаментов</th>
+                    <th scope="col">Начальная дата</th>
+                    <th scope="col">Конечная дата</th>
+                    <th scope="col">Дата инактива</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Booking.Apartament.Number</td>
+                        <td>@item.Booking.StartTime</td>
+                        <td>@item.Booking.EndTime</td>
+                        <td>@item.InActiveTime</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>*@

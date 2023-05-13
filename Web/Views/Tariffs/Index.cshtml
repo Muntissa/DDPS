@@ -1,6 +1,55 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Tariffs>
 
 @{
+    ViewData["Title"] = "Тарифы";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Тарифы</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="Create" class="btn btn-success">Создать новый тариф</a>
+        </div>
+    </div>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Название тарифа</th>
+                    <th scope="col">Описание тарифа</th>
+                    <th scope="col">Цена тарифа(руб./день)</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2">Изменить</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная информация</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+@*@model IEnumerable<DDPS.Api.Entities.Tariffs>
+
+@{
     ViewData["Title"] = "Главная";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -45,4 +94,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

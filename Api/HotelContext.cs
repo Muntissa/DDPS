@@ -11,6 +11,7 @@ namespace DDPS.Api
         public DbSet<Facilities> Facilities => Set<Facilities>();
         public DbSet<Services> Services => Set<Services>();
         public DbSet<Tariffs> Tariffs => Set<Tariffs>();
+        public DbSet<BookingsArchive> BookingsArchive => Set<BookingsArchive>();
 
         public HotelContext() => Database.EnsureCreated();
 

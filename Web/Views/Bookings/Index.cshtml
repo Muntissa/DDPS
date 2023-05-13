@@ -4,6 +4,78 @@
     ViewData["Title"] = "Заказы";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Заказы</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="Create" class="btn btn-success">Создать новый заказ</a>
+        </div>
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 text-end">
+            <a asp-action="GetServicesTabless" class="btn btn-success">Все сервисы</a>
+        </div>
+    </div>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Тариф</th>
+                    <th scope="col">Начальная дата</th>
+                    <th scope="col">Конечная дата</th>
+                    <th scope="col">Удобства</th>
+                    <th scope="col">Услуги</th>
+                    <th scope="col">Общая цена</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Apartament.Number</td>
+                        <td>
+                            <img class="img-thumbnail" src="@item.Apartament.Photo" alt="фото апартаментов" style="max-width: 100px; height: auto;">
+                        </td>
+                        <td>@item.Apartament.Tariff.Name</td>
+                        <td>@item.StartTime</td>
+                        <td>@item.EndTime</td>
+                        <td>
+                                @foreach (var facilty in item.Apartament.Facilities)
+                                {
+                                    @facilty.Name
+                                    @Environment.NewLine
+                                }
+                        </td>
+                        <td>
+                                @foreach (var service in item.Apartament.Services)
+                                {
+                                    @service.Name
+                                    @Environment.NewLine
+                                }
+                        </td>
+                        <td>@item.TotalPrice</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2">Изменить</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная информация</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@*@model IEnumerable<DDPS.Api.Entities.Bookings>
+
+@{
+    ViewData["Title"] = "Заказы";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <h1>Заказы</h1>
 
 <a asp-action="Create" class="btn btn-success">Новый заказ</a>
@@ -78,3 +150,4 @@
         </tr>
     }
 </table>
+*@

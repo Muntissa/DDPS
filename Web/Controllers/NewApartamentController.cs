@@ -16,7 +16,6 @@ namespace DDPS.Web.Controllers
         {
             _context = context;
             _hostingEnvironment = hostingEnvironment;
-
         }
 
         #region SelectFirstProperies 

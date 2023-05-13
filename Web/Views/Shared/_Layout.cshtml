@@ -20,18 +20,25 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Главная</a>
+                            <a class="nav-link" asp-area="" asp-controller="Apartaments" asp-action="Index">Апартаменты</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTables" role="button" data-bs-toggle="dropdown" aria-expanded="false">Таблицы</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownTables">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Apartaments" asp-action="Index">Апартаменты</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Bookings" asp-action="Index">Заказы</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Clients" asp-action="Index">Клиенты</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Facilities" asp-action="Index">Удобства</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Services" asp-action="Index">Услуги</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Tariffs" asp-action="Index">Тарифы</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Bookings" asp-action="Index">Заказы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">Клиенты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Facilities" asp-action="Index">Удобства</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Services" asp-action="Index">Услуги</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Tariffs" asp-action="Index">Тарифы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="BookingsArchive" asp-action="Index">Архив заказов</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial"></partial>

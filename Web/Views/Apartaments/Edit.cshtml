@@ -22,11 +22,11 @@
                 <input asp-for="Area" class="form-control" />
                 <span asp-validation-for="Area" class="text-danger"></span>
             </div>
-            <div class="mb-3">
+@*            <div class="mb-3">
                 <label asp-for="Price" class="form-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+            </div>*@
             <input type="hidden" name="Photo" value="@Model.Photo" />
             @if (ViewBag.Photodata != null)
             {

@@ -29,6 +29,8 @@ namespace DDPS.Api.Entities
         [Display(Name = "Клиент")]
         public int? ClientId { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public virtual Clients? Client { get; set; }
         public virtual List<Services>? Services { get; set; } = new();
     }

@@ -23,7 +23,7 @@ namespace DDPS.Web.Controllers
         // GET: Bookings
         public async Task<IActionResult> Index()
         {
-            var context = _context.Bookings.Include(a => a.Apartament).ThenInclude(f => f.Facilities)
+            var context = _context.Bookings.Where(b => b.IsActive).Include(a => a.Apartament).ThenInclude(f => f.Facilities)
                 .Include(a => a.Apartament).ThenInclude(s => s.Services)
                 .Include(c => c.Client)
                 .Include(s => s.Services);
@@ -31,7 +31,7 @@ namespace DDPS.Web.Controllers
             return View(await context.ToListAsync());
         }
 
-        [HttpPost]
+/*        [HttpPost]
         public async Task<IActionResult> Index(int clientId)
         {
             var client = await _context.Clients.FindAsync(clientId);
@@ -41,9 +41,9 @@ namespace DDPS.Web.Controllers
             ViewBag.ClientId = clientId;
             ViewBag.Client = client;
             return View("ChooseApartament");
-        }
+        }*/
 
-        [HttpPost]
+/*        [HttpPost]
         public async Task<IActionResult> ChooseApartament(int clientId)
         {
             var client = await _context.Clients.FindAsync(clientId);
@@ -56,8 +56,8 @@ namespace DDPS.Web.Controllers
             ViewBag.ClientId = clientId;
             ViewBag.Client = client.LastName;
             return View("ChooseDate");
-                
-        }
+              */  
+/*        }*/
         // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -84,7 +84,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("FirstStepClient", "NewBooking");
         }
 
-        // POST: Bookings/Create
+/*        // POST: Bookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -100,6 +100,11 @@ namespace DDPS.Web.Controllers
             ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
             ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
             return View(nameof(Index));
+        }*/
+
+        public IActionResult GetServicesTabless()
+        {
+            return RedirectToAction("Index", "Services");
         }
 
         // GET: Bookings/Edit/5
@@ -187,12 +192,24 @@ namespace DDPS.Web.Controllers
                 return Problem("Entity set 'HotelContext.Bookings'  is null.");
             }
             var bookings = await _context.Bookings.FindAsync(id);
+
             if (bookings != null)
             {
-                _context.Bookings.Remove(bookings);
+                bookings.Apartament.Reservation = false;
+                bookings.IsActive = false;
+
+                var inActiveBooking = new BookingsArchive()
+                {
+                    Booking = bookings,
+                    InActiveTime = DateTime.Now,
+                };
+
+                _context.BookingsArchive.Add(inActiveBooking);
+/*                _context.Bookings.Remove(bookings);*/
             }
-            
+           
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

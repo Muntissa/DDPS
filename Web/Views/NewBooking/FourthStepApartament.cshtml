@@ -24,7 +24,7 @@
             @Html.DisplayName("Включенные услуги")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayName("Цена(руб./день)")
         </th>
         <th></th>
     </tr>
@@ -46,16 +46,18 @@
                     @foreach (var facility in item.Facilities)
                     {
                         @Html.DisplayFor(modelItem => facility.Name)
+                        @Environment.NewLine
                     } 
                 </td>
                 <td>
-                    @foreach (var service in item.Facilities)
+                    @foreach (var service in item.Services)
                     {
                         @Html.DisplayFor(modelItem => service.Name)
+                        @Environment.NewLine
                     } 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @(item.Tariff.Price + (item.Area * 50) + (int)(0.5 * item.Services.Sum(s => s.Price)))
                 </td>
                 <td>
                 @using (Html.BeginForm())

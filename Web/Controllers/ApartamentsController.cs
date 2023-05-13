@@ -29,9 +29,9 @@ namespace DDPS.Web.Controllers
 
             if (entity != null && !string.IsNullOrEmpty(entity.Photo))
             {
-                var imagePath = Path.Combine(_appEnvironment.ContentRootPath,"wwwroot/", entity.Photo);
-/*                var imageFileStream = System.IO.File.OpenRead(imagePath);*/
-/*                return File(imageFileStream, "image/jpeg");*/
+                var imagePath = Path.Combine(_appEnvironment.ContentRootPath, "wwwroot/", entity.Photo);
+                /*                var imageFileStream = System.IO.File.OpenRead(imagePath);*/
+                /*                return File(imageFileStream, "image/jpeg");*/
             }
 
             return NotFound();
@@ -87,15 +87,16 @@ namespace DDPS.Web.Controllers
                 if (upload != null)
                 {
                     string path = "/Files/" + upload.FileName;
-                    using (var fileStream = new
-                   FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     {
                         await upload.CopyToAsync(fileStream);
                     }
                     apartaments.Photo = path;
                 }
+
                 _context.Add(apartaments);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description", apartaments.TariffId);
@@ -209,23 +210,23 @@ namespace DDPS.Web.Controllers
                     _context.Bookings.Remove(booking);
 
                 _context.Apartaments.Remove(apartaments);
-                
+
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ApartamentsExists(int id)
         {
-          return (_context.Apartaments?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Apartaments?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-        
+
         private void LoadPhotoBytesToViewBag(IEnumerable<Apartaments>? apartaments)
         {
             List<byte[]> bytes = new List<byte[]>();
 
-            foreach(var apart in apartaments)
+            foreach (var apart in apartaments)
             {
                 if (apart != null)
                 {
