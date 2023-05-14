@@ -5,47 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Детальная информация</h1>
-
-<div>
-    <h4>Клиенты</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.SecondName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.SecondName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Client.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Client.PhoneNumber)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Client.Id">Edit</a> |
-    <a asp-action="Index">Вернуться к списку</a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Детальная информация</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Фамилия:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Client.SecondName)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Имя:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Client.FirstName)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Отчество:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Client.LastName)</div>
+                    </div>
+                     <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">E-mail:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Client.Email)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Телефонный номер:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Client.PhoneNumber)</div>
+                    </div>
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-sm-12 text-center">
+                            <a asp-action="Edit" asp-route-id="@Model?.Client.Id" class="btn btn-warning mb-3">Изменить</a>
+                            <br />
+                            <a asp-action="Index" class="btn btn-primary">Вернуться к списку клиентов</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <hr />
@@ -55,7 +53,48 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <div class="container-fluid mt-5">
+        <div class="table-responsive mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Номер апарт.</th>
+                        <th scope="col">Тариф</th>
+                        <th scope="col">Начальная дата</th>
+                        <th scope="col">Конечная дата</th>
+                        <th scope="col">Дополнительные услуги</th>
+                        <th scope="col">Общая цена</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Bookings)
+                    {
+                        <tr>
+                            <td>@item.Apartament.Number</td>
+                            <td>@item.Apartament.Tariff.Name</td>
+                            <td>@item.StartTime</td>
+                            <td>@item.EndTime</td>
+                            <td>
+                                @foreach (var service in item.Apartament.Services)
+                                {
+                                    @service.Name
+                                    <br />
+                                }
+                            </td>
+                            <td>@item.TotalPrice</td>
+                            <td>
+                                <a asp-controller="Bookings" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    @*    <table class="table table-bordered table-hover">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Bookings.First().Apartament.Number)
@@ -127,6 +166,68 @@ else
                 <td><a asp-controller="BookingsController" asp-action="Delete" asp-route-Id="@item.Id">Удалить</a></td>
             </tr>
         }
-    </table>
+    </table>*@
 }
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+@*@model DDPS.Api.TempModels.ClientDetailsModel
+
+@{
+    ViewData["Title"] = "Детальная информация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Детальная информация</h1>
+
+<div>
+    <h4>Клиенты</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.SecondName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.SecondName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.PhoneNumber)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Client.Id">Edit</a> |
+    <a asp-action="Index">Вернуться к списку</a>
+</div>
+*@
+
+
 

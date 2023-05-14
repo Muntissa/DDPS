@@ -5,48 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h1 class="text-center">Удаление апартаментов</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Apartaments</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-        <dd class = "col-sm-10">
-            <img class="img-fluid rounded" src="@Model.Photo" alt="Фото апартаментов" style="max-width: 300px;">
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Area)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Area)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayName("Цена")
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.Tariff.Price + (Model.Area * 50) + (int)(0.5 * Model.Services.Sum(s => s.Price)))
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tariff)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tariff.Name)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Удалить" class="btn btn-danger" /> |
-        <a asp-action="Index">Вернуться к списку апартаментов</a>
-    </form>
+<h3 class="text-center">Вы точно хотите это удалить?</h3>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card mb-4">
+            <img src="@Model.Photo" class="card-img-top" alt="Фото апартаментов" style="max-height: 300px;">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayNameFor(model => model.Number)</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Number)</p>
+                <h4 class="card-title">@Html.DisplayNameFor(model => model.Area)</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Area)</p>
+                <h4 class="card-title">Цена</h4>
+                <p class="card-text">@((Model.Tariff.Price + (Model.Area * 50) + (int)(0.5 * Model.Services.Sum(s => s.Price))))</p>
+                <h4 class="card-title">@Html.DisplayNameFor(model => model.Tariff)</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Tariff.Name)</p>
+                <h4 class="card-title">@Html.DisplayName("Включенные услуги")</h4>
+                <p class="card-text">
+                    @foreach (var service in Model.Services)
+                    {
+                        @service.Name
+                        <br />
+                    }
+                </p>
+                <h4 class="card-title">@Html.DisplayName("Удобства")</h4>
+                <p class="card-text">
+                    @foreach(var facility in Model.Facilities)
+                    {
+                        @facility.Name
+                        <br />
+                    }
+                </p>
+                <h4 class="card-title">@Html.DisplayName("Зарезервировано")</h4>
+                <p class="card-text">@(Model.Reservation ? "Да" : "Нет")</p>
+                <form asp-action="Delete" class="text-center">
+                    <button type="submit" class="btn btn-danger btn-lg mt-3">Удалить</button>
+                    <input type="hidden" asp-for="Id" />
+                    <a asp-action="Index" class="btn btn-secondary btn-lg mt-3">Вернуться к списку апартаментов</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+

@@ -19,13 +19,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Картинка</th>
+                    <th scope="col">Номер апарт.</th>
+                    <th scope="col">Клиент</th>
                     <th scope="col">Тариф</th>
                     <th scope="col">Начальная дата</th>
                     <th scope="col">Конечная дата</th>
-                    <th scope="col">Удобства</th>
-                    <th scope="col">Услуги</th>
+                    <th scope="col">Дополнительные услуги</th>
                     <th scope="col">Общая цена</th>
                     <th scope="col"></th>
                 </tr>
@@ -36,29 +35,23 @@
                     <tr>
                         <td>@item.Apartament.Number</td>
                         <td>
-                            <img class="img-thumbnail" src="@item.Apartament.Photo" alt="фото апартаментов" style="max-width: 100px; height: auto;">
+                              @item.Client.SecondName
+                              @item.Client.FirstName
+                              @item.Client.LastName
                         </td>
                         <td>@item.Apartament.Tariff.Name</td>
                         <td>@item.StartTime</td>
                         <td>@item.EndTime</td>
                         <td>
-                                @foreach (var facilty in item.Apartament.Facilities)
-                                {
-                                    @facilty.Name
-                                    @Environment.NewLine
-                                }
-                        </td>
-                        <td>
                                 @foreach (var service in item.Apartament.Services)
                                 {
                                     @service.Name
-                                    @Environment.NewLine
+                                    <br />
                                 }
                         </td>
                         <td>@item.TotalPrice</td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2">Изменить</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная информация</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная инф.</a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
                         </td>
                     </tr>
@@ -67,87 +60,3 @@
         </table>
     </div>
 </div>
-
-
-
-@*@model IEnumerable<DDPS.Api.Entities.Bookings>
-
-@{
-    ViewData["Title"] = "Заказы";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<h1>Заказы</h1>
-
-<a asp-action="Create" class="btn btn-success">Новый заказ</a>
-</p>
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Apartament.Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apartament.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apartament.Tariff.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Apartament.Area)
-        </th>
-        <th>
-            @Html.DisplayName("Удобства")
-        </th>
-        <th>
-            @Html.DisplayName("Услуги")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apartament.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apartament.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apartament.Tariff.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apartament.Area)
-            </td>
-            <td>
-                @foreach (var facility in item.Apartament.Facilities)
-                {
-                    @Html.DisplayFor(modelItem => facility.Name)
-                }
-            </td>
-            <td>
-                @foreach (var service in item.Services)
-                {
-                    @Html.DisplayFor(modelItem => service.Name)
-                    @Environment.NewLine
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-        </tr>
-    }
-</table>
-*@

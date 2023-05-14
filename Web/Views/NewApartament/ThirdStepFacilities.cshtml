@@ -1,6 +1,43 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Facilities>
 
-<form method="post">
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Выбор удобств</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="CreateFacility" class="btn btn-success">Создать новое удобство</a>
+        </div>
+    </div>
+    <br />
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var facility in Model)
+                {
+                    <tr>
+                        <td class="align-middle"><input type="checkbox" name="facilitiesIds" value="@facility.Id" /></td>
+                        <td class="align-middle">@facility.Name</td>
+                        <td>
+                            <a asp-action="EditFacility" asp-route-facilityId="@facility.Id" class="btn btn-secondary ">Изменить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="submit">Далее</button>
+        </div>
+    </form>
+</div>
+
+
+@*<form method="post">
     <table>
         <thead>
             <tr>
@@ -19,4 +56,4 @@
         </tbody>
     </table>
     <button type="submit">Выбрать</button>
-</form>
+</form>*@

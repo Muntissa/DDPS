@@ -5,17 +5,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
-    <label for="basic-addon1" class="form-label">Введите порядковый номер</label>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" name="apartamentNumber" placeholder="Порядковый номер" aria-label="Порядковый номер" aria-describedby="basic-addon1">
-    </div>
-    <label for="basic-addon2" class="form-label">Введите площадь</label>
-    <div class="input-group mb-3">
-        <input type="number" class="form-control" name="apartamentArea" placeholder="Площадь" aria-label="Площадь" aria-describedby="basic-addon2">
-        <span class="input-group-text" id="basic-addon2">м^2</span>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-}
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Ввод начальной информации</h1>
 
+    @using (Html.BeginForm())
+    {
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="apartamentNumber" class="form-label">Введите порядковый номер</label>
+                            <input required type="number" class="form-control" name="apartamentNumber" placeholder="Порядковый номер" aria-label="Порядковый номер" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="apartamentArea" class="form-label">Введите площадь(м²)</label>
+                            <input required type="number" class="form-control" name="apartamentArea" placeholder="Площадь" aria-label="Площадь" aria-describedby="basic-addon2">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Далее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@*<form class="container mt-5" method="post">
+    <h1 class="text-center mb-4">Ввод начальной информации</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="apartamentNumber" class="form-label">Введите порядковый номер</label>
+                <input type="number" class="form-control" name="apartamentNumber" placeholder="Порядковый номер" aria-label="Порядковый номер" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="apartamentArea" class="form-label">Введите площадь</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" name="apartamentArea" placeholder="Площадь" aria-label="Площадь" aria-describedby="basic-addon2">
+                    <span class="input-group-text">м²</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary w-100">Далее</button>
+        </div>
+    </div>
+</form>*@

@@ -1,6 +1,43 @@
-﻿<h1>Выбор фото</h1>
+﻿<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Загрузка фотографии</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-header">Выберите фото</div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" id="apartamentPhotoInput" name="apartamentPhoto" onchange="previewImage()" />
+                        <img id="apartamentPhotoPreview" src="#" alt="Выбранное фото" style="display:none; max-width: 100%; max-height: 200px; margin-top: 10px;" />
+                        <button type="submit" class="btn btn-primary mt-3">Загрузить фото</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function previewImage() {
+        var preview = document.getElementById("apartamentPhotoPreview");
+        var fileInput = document.getElementById("apartamentPhotoInput");
 
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="apartamentPhoto" />
-    <button type="submit">Загрузить фото</button>
-</form>
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>
+
+
+
+
+@*<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Выбор удобств</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="apartamentPhoto" />
+        <button type="submit">Загрузить фото</button>
+    </form>
+</div>*@    

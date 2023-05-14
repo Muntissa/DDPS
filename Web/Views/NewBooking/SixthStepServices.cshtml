@@ -1,26 +1,41 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Services>
 
-<form method="post">
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <th>@Html.DisplayNameFor(model => model.Description)</th>
-                <th>@Html.DisplayNameFor(model => model.Price)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var service in Model)
-            {
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Выбор дополнительных услуг</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="CreateService" class="btn btn-success">Создать новую услугу</a>
+        </div>
+    </div>
+    <br />
+    <form method="post">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><input type="checkbox" name="servicesIds" value="@service.Id" /></td>
-                    <td>@service.Name</td>
-                    <td>@service.Description</td>
-                    <td>@service.Price</td>
+                    <th scope="col"></th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Description)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Price)</th>
+                    <th scope="col"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <button type="submit">Выбрать</button>
-</form>
+            </thead>
+            <tbody>
+                @foreach (var service in Model)
+                {
+                    <tr>
+                        <td class="align-middle"><input type="checkbox" name="servicesIds" value="@service.Id" /></td>
+                        <td class="align-middle">@service.Name</td>
+                        <td class="align-middle">@service.Description</td>
+                        <td class="align-middle">@service.Price</td>
+                        <td>
+                            <a asp-action="EditService" asp-route-serviceId="@service.Id" class="btn btn-secondary ">Изменить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="submit">Далее</button>
+        </div>
+    </form>
+</div>

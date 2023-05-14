@@ -1,38 +1,53 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Clients>
 
-<h1>Выбор клиента</h1>
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Выбор клиента</h1>
 
-@*<div class="form-group">
-    <a asp-controller="Employees" asp-action="Create" asp-route-fromSelectEmployee="true" class="btn btn-info">Добавить нового работника</a>
-</div>*@
-
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayName("ФИО")
-        </th>
-        <th></th>
-    </tr>
-    @if (Model != null)
-    {
-        @foreach (var item in Model)
-        {
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="CreateClient" class="btn btn-success">Создать нового клиента</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SecondName)
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @using (Html.BeginForm())
-                    {
-                        <div>
-                            <input type="hidden" name="clientId" value="@item.Id" />
-                            <input type="submit" value="Выбрать" class="btn btn-primary" />
-                        </div>
-                    }
-                </td>
+                <th>ФИО</th>
+                <th>E-mail</th>
+                <th>Телефон</th>
+                <th></th>
             </tr>
-        }
-    }
-</table>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SecondName)
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm())
+                            {
+                                <div>
+                                    <input type="hidden" name="clientId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-primary">Выбрать</button>
+                                    <a asp-action="EditClient" asp-route-clientId="@item.Id" class="btn btn-secondary ">Изменить</a>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

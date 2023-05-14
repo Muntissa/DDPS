@@ -5,6 +5,74 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Детальная информация</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-subtitle mb-4 text-muted">Заказ №@Model.Id</h4>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Начальная дата:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.StartTime)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Конечная дата:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.EndTime)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Общая стоимость:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.TotalPrice)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Номер апартаментов:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Apartament.Number)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Клиент:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Client.SecondName) @Html.DisplayFor(model => model.Client.FirstName) @Html.DisplayFor(model => model.Client.LastName)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Заказные услуги:</div>
+                        <div class="col-sm-8">
+                            @foreach (var service in Model.Services)
+                            {
+                                @service.Name
+                                <br />
+                            }
+                        </div>
+                    </div>  
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-sm-12 text-center">
+                            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning mb-3">Изменить</a>
+                            <br />
+                            <a asp-action="Index" class="btn btn-primary">Вернуться к списку заказов</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+@*@model DDPS.Api.Entities.Bookings
+
+@{
+    ViewData["Title"] = "Детальная информация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h1>Детальная информация</h1>
 
 <div>
@@ -29,12 +97,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TotalPrice)
         </dd>
-@*        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reservation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reservation)
-        </dd>*@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Apartament)
         </dt>
@@ -53,3 +115,4 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Изменить</a> |
     <a asp-action="Index">Вернуться к списку</a>
 </div>
+*@

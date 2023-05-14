@@ -28,18 +28,25 @@
                             <span asp-validation-for="Area" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <input type="hidden" name="Photo" value="@Model.Photo" />
-                            @if (ViewBag.Photodata != null)
-                            {
-                                <div class="mb-3">
-                                    <img width="200" src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
-                                </div>
-                            }
+                            <figure>
+                                
+                                <img style="max-width: 100%; max-height: 200px; margin-top: 10px;" id="previousPhoto" src="@Model.Photo" />
+                                <figcaption>Предыдущее фото</figcaption>
+                            </figure>
                         </div>
+
+                        @*                        <div class="mb-3">
+                        <input type="hidden" name="Photo" value="@Model.Photo" />
+                        @if (ViewBag.Photodata != null)
+                        {
                         <div class="mb-3">
-                            <label class="form-label">Выберите файл</label>
-                            <input type="file" name="upload" class="form-control" />
+                        <img width="200" src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
                         </div>
+                        }
+                        </div>*@
+                        <div class="mb-3">
+                            <input type="file" id="apartamentPhotoInput" name="upload" onchange="previewImage()" />
+                            <img id="apartamentPhotoPreview" src="#" alt="Выбранное фото" style="display:none; max-width: 100%; max-height: 200px; margin-top: 10px;" />                        </div>
                         <div class="mb-3">
                             <div class="table-responsive mt-4">
                                 <table class="table table-striped">
@@ -103,6 +110,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewImage() {
+        var preview = document.getElementById("apartamentPhotoPreview");
+        var fileInput = document.getElementById("apartamentPhotoInput");
+
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+</script>
 
 @*<h1 class="mb-4">Изменить апартаменты</h1>
 

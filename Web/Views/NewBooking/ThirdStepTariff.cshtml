@@ -1,18 +1,72 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Tariffs>
 
-<h1>Выбор тарифа</h1>
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Выбор тирифа</h1>
 
-@*<div class="form-group">
-    <a asp-controller="Employees" asp-action="Create" asp-route-fromSelectEmployee="true" class="btn btn-info">Добавить нового работника</a>
-</div>*@
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="CreateTariff" class="btn btn-success">Создать новый тариф</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Цена (руб/день)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm())
+                            {
+                                <div>
+                                    <input type="hidden" name="tariffId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-primary">Выбрать</button>
+                                    <a asp-action="EditTariff" asp-route-tariffId="@item.Id" class="btn btn-secondary ">Изменить</a>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
 
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+
+
+@*<table class="table table-bordered table-hover">
+    <thead class="table-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price) (руб./день)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     @if (Model != null)
     {
         @foreach (var item in Model)
@@ -20,6 +74,12 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
                     @using (Html.BeginForm())
@@ -33,4 +93,4 @@
             </tr>
         }
     }
-</table>
+</table>*@

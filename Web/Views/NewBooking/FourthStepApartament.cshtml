@@ -1,21 +1,76 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Apartaments>
 
-<h1>Выбор апартаментов</h1>
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Выбор апартаментов</h1>
 
-@*<div class="form-group">
-    <a asp-controller="Employees" asp-action="Create" asp-route-fromSelectEmployee="true" class="btn btn-info">Добавить нового работника</a>
-</div>*@
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <a asp-action="CreateApartament" class="btn btn-success">Создать новые апартаменты</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>Площадь м^2</th>
+                <th>Удобства</th>
+                <th>Включенные услуги</th>
+                <th>Цена руб/день</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Area)
+                        </td>
+                        <td>
+                            @foreach (var facility in item.Facilities)
+                            {
+                                @Html.DisplayFor(modelItem => facility.Name)
+                                <br />
+                            }
+                        </td>
+                        <td>
+                            @foreach (var service in item.Services)
+                            {
+                                @Html.DisplayFor(modelItem => service.Name)
+                                <br />
+                            }
+                        </td>
+                        <td>
+                            @(item.Tariff.Price + (item.Area * 50) + (int)(0.5 * item.Services.Sum(s => s.Price)))
+                        </td>
+                        <td>
+                            @using (Html.BeginForm())
+                            {
+                                <div>
+                                    <input type="hidden" name="apartament" value="@item.Id" />
+                                    <button type="submit" class="btn btn-primary">Выбрать</button>
+                                    <a asp-action="EditApartament" asp-route-apartamentId="@item.Id" class="btn btn-secondary ">Изменить</a>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+@*<h1>Выбор апартаментов</h1>
 
 <table class="table table-bordered table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tariff.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Area)
+            @Html.DisplayNameFor(model => model.Area) м.2
         </th>
         <th>
             @Html.DisplayName("Удобства")
@@ -24,7 +79,7 @@
             @Html.DisplayName("Включенные услуги")
         </th>
         <th>
-            @Html.DisplayName("Цена(руб./день)")
+            @Html.DisplayName("Цена (руб/день)")
         </th>
         <th></th>
     </tr>
@@ -33,9 +88,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Number)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Tariff.Name)
                 </td>
@@ -46,14 +98,14 @@
                     @foreach (var facility in item.Facilities)
                     {
                         @Html.DisplayFor(modelItem => facility.Name)
-                        @Environment.NewLine
+                        <br />
                     } 
                 </td>
                 <td>
                     @foreach (var service in item.Services)
                     {
                         @Html.DisplayFor(modelItem => service.Name)
-                        @Environment.NewLine
+                        <br />
                     } 
                 </td>
                 <td>
@@ -71,4 +123,4 @@
             </tr>
         }
     }
-</table>
+</table>*@

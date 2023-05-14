@@ -1,6 +1,37 @@
 ﻿@model DDPS.Api.Entities.Services
 
 @{
+    ViewData["Title"] = "Удаление услуги";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Удаление удобства</h1>
+
+<h3 class="text-center">Вы точно хотите это удалить?</h3>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayName("Название услуги")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Name)</p>
+                <h4 class="card-title">@Html.DisplayName("Описание услуги")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Description)</p>
+                <h4 class="card-title">@Html.DisplayName("Цена услуги")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Price)</p>
+                <form asp-action="Delete" class="text-center">
+                    <button type="submit" class="btn btn-danger btn-lg mt-3">Удалить</button>
+                    <input type="hidden" asp-for="Id" />
+                    <a asp-action="Index" class="btn btn-secondary btn-lg mt-3">Вернуться к списку услуг</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@model DDPS.Api.Entities.Services
+
+@{
     ViewData["Title"] = "Удаление";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -37,4 +68,4 @@
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Вернуться к списку</a>
     </form>
-</div>
+</div>*@

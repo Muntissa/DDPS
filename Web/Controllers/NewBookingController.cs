@@ -103,5 +103,47 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("Index", "Bookings");
         }
         #endregion
+
+        #region RedirectToActions
+        public IActionResult EditClient(int clientId)
+        {
+            return RedirectToAction("Edit", "Clients", new { id = clientId });
+        }
+
+        public IActionResult CreateClient()
+        {
+            return RedirectToAction("Create", "Clients");
+        }
+
+        public IActionResult EditTariff(int tariffId)
+        {
+            return RedirectToAction("Edit", "Tariffs", new { id = tariffId });
+        }
+
+        public IActionResult CreateTariff()
+        {
+            return RedirectToAction("Create", "Tariffs");
+        }
+
+        public IActionResult EditApartament(int apartamentId)
+        {
+            return RedirectToAction("Edit", "Tariffs", new { id = apartamentId });
+        }
+
+        public IActionResult CreateApartament()
+        {
+            return RedirectToAction("Create", "Tariffs");
+        }
+
+        public IActionResult EditService(int serviceId)
+        {
+            return RedirectToAction("Edit", "Services", new { id = serviceId });
+        }
+
+        public IActionResult CreateService()
+        {
+            return RedirectToAction("Create", "Services");
+        }
+        #endregion
     }
 }

@@ -1,58 +1,115 @@
 ﻿@model DDPS.Api.Entities.Bookings
 
 @{
+    ViewData["Title"] = "Удаление клиента";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Удаление заказа</h1>
+
+<h3 class="text-center">Вы точно хотите это удалить?</h3>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">@Html.DisplayName("Дата начала бронирования")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.StartTime)</p>
+                <h4 class="card-title">@Html.DisplayName("Дата окончания бронирования")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.EndTime)</p>
+                <h4 class="card-title">Общая стоимость</h4>
+                <p class="card-text">Пока нет формулы</p>
+                <h4 class="card-title">@Html.DisplayName("Номер апартаментов")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Apartament.Number)</p>
+                <h4 class="card-title">@Html.DisplayName("Клиент")</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Client.SecondName) @Html.DisplayFor(model => model.Client.FirstName) @Html.DisplayFor(model => model.Client.LastName)</p>
+                <h4 class="card-title">@Html.DisplayName("Заказные услуги")</h4>
+                <p class="card-text">
+                    @foreach (var service in Model.Services)
+                    {
+                        @service.Name
+                        <br />
+                    }
+                </p>
+                <form asp-action="Delete" class="text-center">
+                    <button type="submit" class="btn btn-danger btn-lg mt-3">Удалить</button>
+                    <input type="hidden" asp-for="Id" />
+                    <a asp-action="Index" class="btn btn-secondary btn-lg mt-3">Вернуться к списку заказов</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*@model DDPS.Api.Entities.Bookings
+
+@{
     ViewData["Title"] = "Удаление";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Удаление</h1>
+<div class="container my-5">
+    <h1 class="text-center mb-5">Удаление</h1>
 
-<h3>Вы действительно хотите это удалить?</h3>
-<div>
-    <h4>Заказы</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-@*        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reservation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reservation)
-        </dd>*@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apartament)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apartament.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Client)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Client.FirstName)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Вернутся к списку</a>
-    </form>
+    <div class="card mb-5">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Вы действительно хотите удалить эту запись?</h3>
+
+            <h4 class="card-subtitle mb-3">Заказ №@Model.Id</h4>
+
+            <hr>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Дата начала бронирования</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.StartTime)</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Дата окончания бронирования</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.EndTime)</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Общая стоимость</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.TotalPrice)</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Номер апартаментов</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.Apartament.Id)</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">ФИО клиента</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.Client.SecondName) @Html.DisplayFor(model => model.Client.FirstName) @Html.DisplayFor(model => model.Client.LastName) </div>
+                    </div>
+                </div>
+            </div>
+
+            <form asp-action="Delete" class="mt-4">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a asp-action="Index" class="btn btn-secondary me-md-2">Вернуться к списку</a>
+                    <input type="submit" value="Удалить" class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+*@

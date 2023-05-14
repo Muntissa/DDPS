@@ -133,9 +133,24 @@ namespace DDPS.Web.Controllers
                 return NotFound();
             }
 
+            var fileName = "";
+            var filePath = "";
+
+            if (upload != null && upload.Length > 0)
+            {
+                fileName = Path.GetFileName(upload.FileName);
+                filePath = Path.Combine(_appEnvironment.WebRootPath, "files", fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await upload.CopyToAsync(fileStream);
+                }
+                apartaments.Photo = "/files/" + fileName;
+            }
+
             if (ModelState.IsValid)
             {
-                if (upload != null)
+/*                if (upload != null)
                 {
                     string path = "/Files/" + upload.FileName;
                     using (var fileStream = new
@@ -149,8 +164,8 @@ namespace DDPS.Web.Controllers
                        apartaments.Photo);
                     }
                     apartaments.Photo = path;
-                }
-
+                }*/
+                    
                 try
                 {
                     _context.Update(apartaments);

@@ -109,8 +109,8 @@ namespace DDPS.Web.Controllers
                 Number = (int)TempData.Peek("apartamentNumber"),
                 Area = (int)TempData.Peek("apartamentArea"),
                 Tariff = _context.Tariffs.Find((int)TempData.Peek("apartamentTariffId")),
-                Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList(),
-                Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList(),
+                Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList() ?? null,
+                Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList() ?? null,
                 Photo = "/files/" + fileName
             };
 
@@ -118,6 +118,38 @@ namespace DDPS.Web.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Apartaments");
+        }
+        #endregion
+
+        #region RedirectToActions
+        public IActionResult EditTariff(int tariffId)
+        {
+            return RedirectToAction("Edit", "Tariffs", new { id = tariffId });
+        }
+
+        public IActionResult CreateTariff()
+        {
+            return RedirectToAction("Create", "Tariffs");
+        }
+
+        public IActionResult EditFacility(int facilityId)
+        {
+            return RedirectToAction("Edit", "Facilities", new { id = facilityId });
+        }
+
+        public IActionResult CreateFacility()
+        {
+            return RedirectToAction("Create", "Facilities");
+        }
+
+        public IActionResult EditService(int serviceId)
+        {
+            return RedirectToAction("Edit", "Services", new { id = serviceId });
+        }
+
+        public IActionResult CreateService()
+        {
+            return RedirectToAction("Create", "Services");
         }
         #endregion
     }

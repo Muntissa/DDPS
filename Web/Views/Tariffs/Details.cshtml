@@ -5,6 +5,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Детальная информация</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Название тарифа:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Name)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Описание тарифа:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Description)</div>
+                    </div>
+                    <div class="row mb-4 border-bottom">
+                        <div class="col-sm-4 fw-bold">Цена тарифа:</div>
+                        <div class="col-sm-8">@Html.DisplayFor(model => model.Price)</div>
+                    </div>
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-sm-12 text-center">
+                            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning mb-3">Изменить</a>
+                            <br />
+                            <a asp-action="Index" class="btn btn-primary">Вернуться к списку тарифов</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@model DDPS.Api.Entities.Tariffs
+
+@{
+    ViewData["Title"] = "Детальная информация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h1>Детальная информация</h1>
 
 <div>
@@ -35,3 +76,4 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Вернуться к списку</a>
 </div>
+*@
