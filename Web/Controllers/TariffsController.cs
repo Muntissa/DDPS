@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace DDPS.Web.Controllers
 {
+    [Authorize(Roles = "admin, manager, client")]
     public class TariffsController : Controller
     {
         private readonly HotelContext _context;
@@ -27,6 +30,7 @@ namespace DDPS.Web.Controllers
                           Problem("Entity set 'HotelContext.Tariffs'  is null.");
         }
 
+        [Authorize(Roles = "admin, manager, client")]
         // GET: Tariffs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,12 +49,14 @@ namespace DDPS.Web.Controllers
             return View(tariffs);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Tariffs/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Tariffs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,6 +73,7 @@ namespace DDPS.Web.Controllers
             return View(tariffs);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Tariffs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -83,6 +90,7 @@ namespace DDPS.Web.Controllers
             return View(tariffs);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Tariffs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -118,6 +126,7 @@ namespace DDPS.Web.Controllers
             return View(tariffs);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Tariffs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -136,6 +145,7 @@ namespace DDPS.Web.Controllers
             return View(tariffs);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Tariffs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

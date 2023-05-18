@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace DDPS.Web.Controllers
 {
+    [Authorize(Roles = "admin, manager, client")]
     public class FacilitiesController : Controller
     {
         private readonly HotelContext _context;
@@ -27,12 +30,14 @@ namespace DDPS.Web.Controllers
                           Problem("Entity set 'HotelContext.Facilities'  is null.");
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Facilities/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Facilities/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -49,6 +54,7 @@ namespace DDPS.Web.Controllers
             return View(facilities);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Facilities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -65,6 +71,7 @@ namespace DDPS.Web.Controllers
             return View(facilities);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Facilities/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -100,6 +107,7 @@ namespace DDPS.Web.Controllers
             return View(facilities);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Facilities/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,6 +126,7 @@ namespace DDPS.Web.Controllers
             return View(facilities);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Facilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -5,10 +5,11 @@ using DDPS.Api;
 using DDPS.Api.Entities;
 using Microsoft.AspNetCore.Identity;
 using DDPS.Web.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DDPS.Web.Controllers
 {
-    /*[Authorize(Roles = "admin, manager")]*/
+    [Authorize(Roles = "admin, manager, client")]
     public class ApartamentsController : Controller
     {
         private readonly HotelContext _context;
@@ -25,22 +26,21 @@ namespace DDPS.Web.Controllers
         // GET: Apartaments
         public async Task<IActionResult> Index()
         {
-/*            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            if(!await _userManager.IsInRoleAsync(user, "admin") && !await _userManager.IsInRoleAsync(user, "admin"))
+            if (await _userManager.IsInRoleAsync(user, "admin") || await _userManager.IsInRoleAsync(user, "manager"))
             {
-                
+                var hotelContext = _context.Apartaments.Include(a => a.Tariff);
+                return View(await hotelContext.ToListAsync());
             }
             else
             {
-                var userEmail = user.Email;
-
-                return View(_context.Apartaments.
-            }*/
-            var hotelContext = _context.Apartaments.Include(a => a.Tariff);
-            return View(await hotelContext.ToListAsync());
+                return View(await _context.Bookings.Where(b => b.Client.Email == user.Email).Select(b => b.Apartament).Include(a => a.Tariff).ToListAsync());
+            }
+            
         }
 
+        [Authorize(Roles = "admin, manager, client")]
         // GET: Apartaments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -60,17 +60,20 @@ namespace DDPS.Web.Controllers
             return View(apartaments);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Apartaments/Create
         public IActionResult Create()
         {
             return RedirectToAction("FirstStep", "NewApartament");
         }
 
+        [Authorize(Roles = "admin, manager")]
         public IActionResult GetTariffTables()
         {
             return RedirectToAction("Index", "Tariffs");
         }
 
+        [Authorize(Roles = "admin, manager")]
         // GET: Apartaments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -88,6 +91,7 @@ namespace DDPS.Web.Controllers
             return View(apartaments);
         }
 
+        [Authorize(Roles = "admin, manager")]
         // POST: Apartaments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -137,6 +141,7 @@ namespace DDPS.Web.Controllers
             return View(apartaments);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Apartaments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -156,6 +161,7 @@ namespace DDPS.Web.Controllers
             return View(apartaments);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: Apartaments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -181,6 +187,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "admin, manager")]
         public IActionResult DeleteFacility(int facilityId, int apartamentId)
         {
             var facilityToDelete = _context.Facilities.Find(facilityId);
@@ -193,6 +200,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> AddFacilities(int apartamentId)
         {
@@ -201,6 +209,7 @@ namespace DDPS.Web.Controllers
             return View(await _context.Facilities.Where(f => !inputApartament.Facilities.Contains(f)).ToListAsync());
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> AddFacilities(int apartamentId, List<int> facilitiesIds)
         {
@@ -212,6 +221,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
         }
 
+        [Authorize(Roles = "admin, manager")]
         public IActionResult DeleteService(int serviceId, int apartamentId)
         {
             var serviceToDelete = _context.Services.Find(serviceId);
@@ -224,6 +234,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> AddServices(int apartamentId)
         {
@@ -232,6 +243,7 @@ namespace DDPS.Web.Controllers
             return View(await _context.Services.Where(f => !inputApartament.Services.Contains(f)).ToListAsync());
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> AddServices(int apartamentId, List<int> servicesIds)
         {

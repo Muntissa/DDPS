@@ -3,29 +3,52 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Microsoft.AspNetCore.Identity;
+using DDPS.Web.Areas.Identity.Data;
 
 namespace DDPS.Web.Controllers
 {
+    [Authorize(Roles = "admin, manager, client")]
     public class BookingsController : Controller
     {
         private readonly HotelContext _context;
+        private readonly UserManager<DDPSUser> _userManager;
 
-        public BookingsController(HotelContext context)
+        public BookingsController(HotelContext context, UserManager<DDPSUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
 
         // GET: Bookings
         public async Task<IActionResult> Index()
         {
-            var context = _context.Bookings.Where(b => b.IsActive).Include(a => a.Apartament).ThenInclude(f => f.Facilities)
-                .Include(a => a.Apartament).ThenInclude(s => s.Services)
-                .Include(c => c.Client)
-                .Include(s => s.Services);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            return View(await context.ToListAsync());
+            if (await _userManager.IsInRoleAsync(user, "admin") || await _userManager.IsInRoleAsync(user, "manager"))
+            {
+                var context = _context.Bookings.Where(b => b.IsActive)
+                    .Include(a => a.Apartament).ThenInclude(f => f.Facilities)
+                    .Include(a => a.Apartament).ThenInclude(s => s.Services)
+                    .Include(c => c.Client)
+                    .Include(s => s.Services);
+
+                return View(await context.ToListAsync());
+            }
+            else
+            {
+                return View(await _context.Bookings.Where(b => b.Client.Email == user.Email && b.IsActive)
+                    .Include(a => a.Apartament).ThenInclude(f => f.Facilities)
+                    .Include(a => a.Apartament).ThenInclude(s => s.Services)
+                    .Include(c => c.Client)
+                    .Include(s => s.Services).ToListAsync());
+            }
         }
 
+        [Authorize(Roles = "admin, manager, client")]
         // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -46,17 +69,20 @@ namespace DDPS.Web.Controllers
             return View(bookings);
         }
 
+        [Authorize(Roles = "admin, manager")]
         // GET: Bookings/Create
         public IActionResult Create()
         {
             return RedirectToAction("FirstStepClient", "NewBooking");
         }
 
+        [Authorize(Roles = "admin, manager")]
         public IActionResult GetServicesTabless()
         {
             return RedirectToAction("Index", "Services");
         }
 
+        [Authorize(Roles = "admin, manager")]
         // GET: Bookings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -77,6 +103,7 @@ namespace DDPS.Web.Controllers
             return View(bookings);
         }
 
+        [Authorize(Roles = "admin, manager")]
         // POST: Bookings/Delete/5
         /*[Authorize(Roles = "test, test2")]*/
         [HttpPost, ActionName("Delete")]
