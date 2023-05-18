@@ -49,10 +49,11 @@
 <hr />
 @if (!Model.Bookings.Any())
 {
-    <h2>Заказов нет</h2>
+    <h1 class="text-center mb-4">Заказов нет</h1>
 }
 else
 {
+    <h1 class="text-center mb-4">Заказы клиенты @Model.Client.SecondName @Model.Client.FirstName @Model.Client.LastName</h1>
     <div class="container-fluid mt-5">
         <div class="table-responsive mt-4">
             <table class="table table-striped">

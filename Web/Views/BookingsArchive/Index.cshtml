@@ -24,17 +24,17 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Booking.Apartament.Number</td>
-                        <td>@item.Booking.Client.SecondName @item.Booking.Client.FirstName @item.Booking.Client.LastName</td>
+                        <td>@item.ApartamentNumber</td>
+                        <td>@item.ClientSecondName @item.ClientFirstName @item.ClientLastName</td>
                         <td>
-                            @foreach (var service in item.Booking.Services)
+                            @foreach (var service in item.ApartamentAdditionalServices)
                             {
                                 @service.Name
                                 @Environment.NewLine
                             }
                         </td>
-                        <td>@item.Booking.StartTime</td>
-                        <td>@item.Booking.EndTime</td>
+                        <td>@item.BookingStartTime</td>
+                        <td>@item.BookingEndTime</td>
                         <td>@item.InActiveTime</td>
                     </tr>
                 }

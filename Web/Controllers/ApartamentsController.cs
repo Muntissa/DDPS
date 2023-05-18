@@ -41,7 +41,7 @@ namespace DDPS.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var hotelContext = _context.Apartaments.Include(a => a.Tariff);
-            LoadPhotoBytesToViewBag(hotelContext);
+            /*LoadPhotoBytesToViewBag(hotelContext);*/
             return View(await hotelContext.ToListAsync());
         }
 
@@ -117,7 +117,7 @@ namespace DDPS.Web.Controllers
                 return NotFound();
             }
             ViewData["TariffId"] = new SelectList(_context.Tariffs, "Id", "Description", apartaments.TariffId);
-            LoadPhotoBytesToViewBag(apartaments);
+            /*LoadPhotoBytesToViewBag(apartaments);*/
             return View(apartaments);
         }
 

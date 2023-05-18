@@ -63,7 +63,7 @@ namespace DDPS.Web.Controllers
         }
         #endregion
 
-        #region SelectFacilites
+        #region SelectServices
         [HttpGet]
         public async Task<IActionResult> FourthStepServices()
         {
@@ -109,9 +109,9 @@ namespace DDPS.Web.Controllers
                 Number = (int)TempData.Peek("apartamentNumber"),
                 Area = (int)TempData.Peek("apartamentArea"),
                 Tariff = _context.Tariffs.Find((int)TempData.Peek("apartamentTariffId")),
-                Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList() ?? null,
-                Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList() ?? null,
-                Photo = "/files/" + fileName
+                Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList() ?? new List<Services>(),
+                Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList() ?? new List<Facilities>(),
+                Photo = ("/files/" + fileName) ?? ("/files/" + "NotFound.png"),
             };
 
             _context.Apartaments.Add(newApartament);

@@ -3,6 +3,7 @@ using System;
 using DDPS.Api;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DDPS.Api.Migrations
 {
     [DbContext(typeof(HotelContext))]
-    partial class HotelContextModelSnapshot : ModelSnapshot
+    [Migration("20230517072902_RefactoringBookings")]
+    partial class RefactoringBookings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,9 +215,6 @@ namespace DDPS.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BookingsArchiveId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -227,8 +227,6 @@ namespace DDPS.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookingsArchiveId");
 
                     b.ToTable("Services");
                 });
@@ -322,18 +320,6 @@ namespace DDPS.Api.Migrations
                     b.Navigation("Apartament");
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("DDPS.Api.Entities.Services", b =>
-                {
-                    b.HasOne("DDPS.Api.Entities.BookingsArchive", null)
-                        .WithMany("ApartamentAdditionalServices")
-                        .HasForeignKey("BookingsArchiveId");
-                });
-
-            modelBuilder.Entity("DDPS.Api.Entities.BookingsArchive", b =>
-                {
-                    b.Navigation("ApartamentAdditionalServices");
                 });
 #pragma warning restore 612, 618
         }

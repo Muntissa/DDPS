@@ -40,8 +40,8 @@
                               @item.Client.LastName
                         </td>
                         <td>@item.Apartament.Tariff.Name</td>
-                        <td>@item.StartTime</td>
-                        <td>@item.EndTime</td>
+                        <td>@item.StartTime.ToLongDateString()</td>
+                        <td>@item.EndTime.ToLongDateString()</td>
                         <td>
                                 @foreach (var service in item.Apartament.Services)
                                 {
@@ -49,7 +49,7 @@
                                     <br />
                                 }
                         </td>
-                        <td>@item.TotalPrice</td>
+                        <td>@(item.Services.Sum(s => s.Price) + (item.EndTime - item.StartTime).Days * (item.Apartament.Tariff.Price + (item.Apartament.Area * 50) + (int)(0.5 * item.Apartament.Services.Sum(s => s.Price))))</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary btn-sm me-2">Детальная инф.</a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>

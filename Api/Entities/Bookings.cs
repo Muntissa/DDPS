@@ -18,7 +18,7 @@ namespace DDPS.Api.Entities
 
         [Display(Name = "Конечная дата")]
         public DateTime EndTime { get; set; }
-
+        
         [Display(Name = "Общая цена")]
         public int? TotalPrice { get; set; }
 

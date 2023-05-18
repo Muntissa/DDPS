@@ -16,12 +16,7 @@ namespace DDPS.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var context = _context.BookingsArchive.Include(a => a.Booking)
-                .ThenInclude(a => a.Apartament).ThenInclude(f => f.Facilities)
-                .Include(b => b.Booking).ThenInclude(a => a.Apartament).ThenInclude(s => s.Services)
-                .Include(b => b.Booking).ThenInclude(c => c.Client)
-                .Include(s => s.Booking).ThenInclude(s => s.Services)
-                .Where(b => b.Booking.IsActive == false);
+            var context = _context.BookingsArchive;
 
             return View(await context.ToListAsync());
         }

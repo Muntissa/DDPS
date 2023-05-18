@@ -3,6 +3,7 @@ using DDPS.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
+using System.Net;
 using System.Reflection;
 
 namespace DDPS.Web.Controllers
@@ -61,7 +62,28 @@ namespace DDPS.Web.Controllers
         #region SelectApartament
         public async Task<IActionResult> FourthStepApartament()
         {
-            return View(await _context.Apartaments.Where(a => a.Reservation == false && a.Tariff.Id == (int)TempData.Peek("tariffId")).Include(t => t.Tariff).ToListAsync());
+
+            DateTime s = (DateTime)TempData.Peek("startDate");
+            DateTime e = (DateTime)TempData.Peek("endDate");
+            int t = (int)TempData.Peek("tariffId");
+
+            List<Apartaments> apartaments = new List<Apartaments>();
+
+            foreach (Apartaments app in _context.Apartaments.Where(app => app.TariffId == t))
+            {
+                if(!_context.Bookings.Any(b => b.ApartamentId == app.Id && 
+                    ((b.StartTime >= s && b.EndTime <= s) || (b.StartTime >= e && b.EndTime <= e))))
+                {
+                    apartaments.Add(app);
+                }
+            }
+
+            var additionalApartaments = _context.Apartaments.ToList();
+
+            apartaments.AddRange(_context.Set<Apartaments>().Where(a => a.TariffId == (int)TempData.Peek("tariffId") && !apartaments.Contains(a)));
+
+            return View(apartaments);
+            /*return View(await _context.Apartaments.Where(a => a.Reservation == false && a.Tariff.Id == (int)TempData.Peek("tariffId")).Include(t => t.Tariff).ToListAsync());*/
         }
         [HttpPost]
         public async Task<IActionResult> FourthStepApartament(int apartament)

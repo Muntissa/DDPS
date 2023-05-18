@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DDPS.Api;
 using DDPS.Api.Entities;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DDPS.Web.Controllers
 {
@@ -31,33 +32,33 @@ namespace DDPS.Web.Controllers
             return View(await context.ToListAsync());
         }
 
-/*        [HttpPost]
-        public async Task<IActionResult> Index(int clientId)
-        {
-            var client = await _context.Clients.FindAsync(clientId);
-            if (client is null)
-                return NotFound();
+        /*        [HttpPost]
+                public async Task<IActionResult> Index(int clientId)
+                {
+                    var client = await _context.Clients.FindAsync(clientId);
+                    if (client is null)
+                        return NotFound();
 
-            ViewBag.ClientId = clientId;
-            ViewBag.Client = client;
-            return View("ChooseApartament");
-        }*/
+                    ViewBag.ClientId = clientId;
+                    ViewBag.Client = client;
+                    return View("ChooseApartament");
+                }*/
 
-/*        [HttpPost]
-        public async Task<IActionResult> ChooseApartament(int clientId)
-        {
-            var client = await _context.Clients.FindAsync(clientId);
+        /*        [HttpPost]
+                public async Task<IActionResult> ChooseApartament(int clientId)
+                {
+                    var client = await _context.Clients.FindAsync(clientId);
 
-            var apartaments = await _context.Apartaments
-                .Include(s => s.Services)
-                .Include(t => t.Tariff)
-                .ToListAsync();
+                    var apartaments = await _context.Apartaments
+                        .Include(s => s.Services)
+                        .Include(t => t.Tariff)
+                        .ToListAsync();
 
-            ViewBag.ClientId = clientId;
-            ViewBag.Client = client.LastName;
-            return View("ChooseDate");
-              */  
-/*        }*/
+                    ViewBag.ClientId = clientId;
+                    ViewBag.Client = client.LastName;
+                    return View("ChooseDate");
+                      */
+        /*        }*/
         // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -84,23 +85,23 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("FirstStepClient", "NewBooking");
         }
 
-/*        // POST: Bookings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,StartTime,EndTime,TotalPrice,Reservation,ApartamentId,ClientId")] Bookings bookings)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(bookings);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
-            return View(nameof(Index));
-        }*/
+        /*        // POST: Bookings/Create
+                // To protect from overposting attacks, enable the specific properties you want to bind to.
+                // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> Create([Bind("Id,StartTime,EndTime,TotalPrice,Reservation,ApartamentId,ClientId")] Bookings bookings)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _context.Add(bookings);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    ViewData["ApartamentId"] = new SelectList(_context.Apartaments, "Id", "Number", bookings.ApartamentId);
+                    ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "SecondName", bookings.ClientId);
+                    return View(nameof(Index));
+                }*/
 
         public IActionResult GetServicesTabless()
         {
@@ -183,6 +184,7 @@ namespace DDPS.Web.Controllers
         }
 
         // POST: Bookings/Delete/5
+        /*[Authorize(Roles = "test, test2")]*/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -200,14 +202,20 @@ namespace DDPS.Web.Controllers
 
                 var inActiveBooking = new BookingsArchive()
                 {
-                    Booking = bookings,
+                    ApartamentNumber = bookings.Apartament.Id,
+                    ApartamentAdditionalServices = new List<Services>(bookings.Services),
+                    ClientSecondName = bookings.Client.SecondName,
+                    ClientFirstName = bookings.Client.FirstName,
+                    ClientLastName = bookings.Client.LastName,
+                    BookingStartTime = bookings.StartTime,
+                    BookingEndTime = bookings.EndTime,
                     InActiveTime = DateTime.Now,
                 };
 
                 _context.BookingsArchive.Add(inActiveBooking);
-/*                _context.Bookings.Remove(bookings);*/
+                _context.Bookings.Remove(bookings);
             }
-           
+
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -215,7 +223,7 @@ namespace DDPS.Web.Controllers
 
         private bool BookingsExists(int id)
         {
-          return (_context.Bookings?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Bookings?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
