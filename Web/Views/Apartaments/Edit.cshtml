@@ -1,7 +1,7 @@
 ﻿@model DDPS.Api.Entities.Apartaments
 
 @{
-    ViewData["Title"] = "Изменить";
+    ViewData["Title"] = "Изменение апартаментов";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -34,16 +34,6 @@
                                 <figcaption>Предыдущее фото</figcaption>
                             </figure>
                         </div>
-
-                        @*                        <div class="mb-3">
-                        <input type="hidden" name="Photo" value="@Model.Photo" />
-                        @if (ViewBag.Photodata != null)
-                        {
-                        <div class="mb-3">
-                        <img width="200" src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
-                        </div>
-                        }
-                        </div>*@
                         <div class="mb-3">
                             <input type="file" id="apartamentPhotoInput" name="upload" onchange="previewImage()" />
                             <img id="apartamentPhotoPreview" src="#" alt="Выбранное фото" style="display:none; max-width: 100%; max-height: 200px; margin-top: 10px;" />                        </div>
@@ -126,97 +116,6 @@
         }
     }
 </script>
-
-@*<h1 class="mb-4">Изменить апартаменты</h1>
-
-<div class="row">
-    <div class="col-lg-6">
-        <form asp-action="Edit" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="mb-3">
-                <label asp-for="Number" class="form-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Area" class="form-label"></label>
-                <input asp-for="Area" class="form-control" />
-                <span asp-validation-for="Area" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <input type="hidden" name="Photo" value="@Model.Photo" />
-                @if (ViewBag.Photodata != null)
-                {
-                    <div class="mb-3">
-                        <img width="200" src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
-                    </div>
-                }
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Выберите файл</label>
-                <input type="file" name="upload" class="form-control" />
-            </div>
-            <div class="mb-3">
-                <div class="table-responsive mt-4">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Название удобства</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Facilities)
-                            {
-                                <tr>
-                                    <td>@item.Name</td>
-                                    <td>
-                                        <a asp-action="DeleteFacility" asp-route-facilityId="@item.Id" asp-route-apartamentId="@Model.Id" class="btn btn-danger btn-sm">Удалить</a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <a asp-action="AddFacilities" asp-route-apartamentId="@Model.Id" class="btn btn-primary">Добавить новые удобства</a>
-            </div>
-            <div class="mb-3">
-                <div class="table-responsive mt-4">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Название услуги</th>
-                                <th scope="col">Цена услуги</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Services)
-                            {
-                                <tr>
-                                    <td>@item.Name</td>
-                                    <td>@item.Price</td>
-                                    <td>
-                                        <a asp-action="DeleteService" asp-route-serviceId="@item.Id" asp-route-apartamentId="@Model.Id" class="btn btn-danger btn-sm">Удалить</a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <a asp-action="AddServices" asp-route-apartamentId="@Model.Id" class="btn btn-primary">Добавить новые услуги</a>
-            </div>
-            <div class="mb-3">
-                <label asp-for="TariffId" class="form-label"></label>
-                <select asp-for="TariffId" class="form-select" asp-items="ViewBag.TariffId"></select>
-                <span asp-validation-for="TariffId" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Сохранить</button>
-                <a asp-action="Index" class="btn btn-secondary ms-2">Вернуться к полному списку</a>
-            </div>
-        </form>
-    </div>
-</div>*@
 
 @section Scripts {
     @{

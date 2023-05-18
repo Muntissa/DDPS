@@ -25,7 +25,7 @@
                     <th scope="col">Начальная дата</th>
                     <th scope="col">Конечная дата</th>
                     <th scope="col">Дополнительные услуги</th>
-                    <th scope="col">Общая цена</th>
+                    <th scope="col">Общая стоимость</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -43,7 +43,7 @@
                         <td>@item.StartTime.ToLongDateString()</td>
                         <td>@item.EndTime.ToLongDateString()</td>
                         <td>
-                                @foreach (var service in item.Apartament.Services)
+                                @foreach (var service in item.Services)
                                 {
                                     @service.Name
                                     <br />

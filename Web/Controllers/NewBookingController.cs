@@ -83,12 +83,10 @@ namespace DDPS.Web.Controllers
             apartaments.AddRange(_context.Set<Apartaments>().Where(a => a.TariffId == (int)TempData.Peek("tariffId") && !apartaments.Contains(a)));
 
             return View(apartaments);
-            /*return View(await _context.Apartaments.Where(a => a.Reservation == false && a.Tariff.Id == (int)TempData.Peek("tariffId")).Include(t => t.Tariff).ToListAsync());*/
         }
         [HttpPost]
         public async Task<IActionResult> FourthStepApartament(int apartament)
         {
-            /*TempData.Put<Apartaments>("apartament", apartament);*/
             TempData["apartamentId"] = apartament;
             return RedirectToAction(nameof(SixthStepServices));
         }
@@ -98,9 +96,9 @@ namespace DDPS.Web.Controllers
         public async Task<IActionResult> SixthStepServices()
         {
             var apartId = (int)TempData.Peek("apartamentId");
+
             var inputApartament = _context.Set<Apartaments>().Where(a => a.Id == (int)TempData.Peek("apartamentId")).First();
 
-            /*var exceptServices = _context.Services.Except(inputApartament.Services).ToList();*/
             return View(await _context.Services.Where(s => !inputApartament.Services.Contains(s)).ToListAsync());
         }
         [HttpPost]

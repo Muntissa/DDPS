@@ -1,7 +1,7 @@
 ﻿@model DDPS.Api.Entities.Bookings
 
 @{
-    ViewData["Title"] = "Удаление клиента";
+    ViewData["Title"] = "Удаление заказа";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -40,76 +40,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-@*@model DDPS.Api.Entities.Bookings
-
-@{
-    ViewData["Title"] = "Удаление";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<div class="container my-5">
-    <h1 class="text-center mb-5">Удаление</h1>
-
-    <div class="card mb-5">
-        <div class="card-body">
-            <h3 class="card-title mb-4">Вы действительно хотите удалить эту запись?</h3>
-
-            <h4 class="card-subtitle mb-3">Заказ №@Model.Id</h4>
-
-            <hr>
-
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">Дата начала бронирования</label>
-                        <div class="form-control">@Html.DisplayFor(model => model.StartTime)</div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">Дата окончания бронирования</label>
-                        <div class="form-control">@Html.DisplayFor(model => model.EndTime)</div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">Общая стоимость</label>
-                        <div class="form-control">@Html.DisplayFor(model => model.TotalPrice)</div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">Номер апартаментов</label>
-                        <div class="form-control">@Html.DisplayFor(model => model.Apartament.Id)</div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">ФИО клиента</label>
-                        <div class="form-control">@Html.DisplayFor(model => model.Client.SecondName) @Html.DisplayFor(model => model.Client.FirstName) @Html.DisplayFor(model => model.Client.LastName) </div>
-                    </div>
-                </div>
-            </div>
-
-            <form asp-action="Delete" class="mt-4">
-                <input type="hidden" asp-for="Id" />
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a asp-action="Index" class="btn btn-secondary me-md-2">Вернуться к списку</a>
-                    <input type="submit" value="Удалить" class="btn btn-danger" />
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-*@

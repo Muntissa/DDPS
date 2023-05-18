@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-center">Удаление удобства</h1>
+<h1 class="text-center">Удаление услуги</h1>
 
 <h3 class="text-center">Вы точно хотите это удалить?</h3>
 <div class="row">
@@ -20,6 +20,7 @@
                 <p class="card-text">@Html.DisplayFor(model => model.Price)</p>
                 <form asp-action="Delete" class="text-center">
                     <button type="submit" class="btn btn-danger btn-lg mt-3">Удалить</button>
+                    <br />
                     <input type="hidden" asp-for="Id" />
                     <a asp-action="Index" class="btn btn-secondary btn-lg mt-3">Вернуться к списку услуг</a>
 
@@ -28,44 +29,3 @@
         </div>
     </div>
 </div>
-
-@*@model DDPS.Api.Entities.Services
-
-@{
-    ViewData["Title"] = "Удаление";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>Удаление</h1>
-
-<h3>Вы действительно хотите это удалить?</h3>
-<div>
-    <h4>Services</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Вернуться к списку</a>
-    </form>
-</div>*@

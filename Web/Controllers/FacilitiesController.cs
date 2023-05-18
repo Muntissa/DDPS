@@ -27,24 +27,6 @@ namespace DDPS.Web.Controllers
                           Problem("Entity set 'HotelContext.Facilities'  is null.");
         }
 
-        // GET: Facilities/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Facilities == null)
-            {
-                return NotFound();
-            }
-
-            var facilities = await _context.Facilities
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (facilities == null)
-            {
-                return NotFound();
-            }
-
-            return View(facilities);
-        }
-
         // GET: Facilities/Create
         public IActionResult Create()
         {

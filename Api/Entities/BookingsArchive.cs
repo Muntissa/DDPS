@@ -16,11 +16,8 @@ namespace DDPS.Api.Entities
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
         public virtual List<Services> ApartamentAdditionalServices { get; set; }
-        
         public DateTime BookingStartTime { get; set; }
         public DateTime BookingEndTime { get; set; }
-
-        /*public virtual Bookings? Booking { get; set; }*/
         public DateTime InActiveTime { get; set; }
     }
 }

@@ -133,15 +133,15 @@ namespace DDPS.Web.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (!await _roleManager.RoleExistsAsync("admin"))
                     await _roleManager.CreateAsync(new IdentityRole("admin"));
-                if (!await _roleManager.RoleExistsAsync("coach"))
-                    await _roleManager.CreateAsync(new IdentityRole("coach"));
-                if (!await _roleManager.RoleExistsAsync("guest"))
-                    await _roleManager.CreateAsync(new IdentityRole("guest"));
+                if (!await _roleManager.RoleExistsAsync("manager"))
+                    await _roleManager.CreateAsync(new IdentityRole("manager"));
+                if (!await _roleManager.RoleExistsAsync("client"))
+                    await _roleManager.CreateAsync(new IdentityRole("client"));
                
 
                 if (result.Succeeded)
                 { 
-                    await _userManager.AddToRoleAsync(user, "guest");
+                    await _userManager.AddToRoleAsync(user, "admin");
 
                     _logger.LogInformation("User created a new account with password.");
 
