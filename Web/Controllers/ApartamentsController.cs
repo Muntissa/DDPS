@@ -6,6 +6,7 @@ using DDPS.Api.Entities;
 using Microsoft.AspNetCore.Identity;
 using DDPS.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
+using OfficeOpenXml;
 
 namespace DDPS.Web.Controllers
 {
@@ -255,6 +256,65 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("Edit", "Apartaments", new { id = apartamentId });
         }
 
+
+        [Authorize(Roles = "admin, manager")]
+        public FileResult GetAvaibleApartamentsReport(DateTime startDate, DateTime endDate)
+        {
+            // Путь к файлу с шаблоном
+            string path = "/Reports/ApartamentsByDateTemplate.xlsx";
+            //Путь к файлу с результатом
+            string result = "/Reports/ApartamentsByDate.xlsx";
+            FileInfo fi = new FileInfo(_appEnvironment.WebRootPath + path);
+            FileInfo fr = new FileInfo(_appEnvironment.WebRootPath + result);
+            //будем использовть библитотеку не для коммерческого использования
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            //открываем файл с шаблоном
+            using (ExcelPackage excelPackage = new ExcelPackage(fi))
+            {
+                //устанавливаем поля документа
+                excelPackage.Workbook.Properties.Author = "Андронов И.А.";
+                excelPackage.Workbook.Properties.Title = $"Список апартаментов, свободных в даты {startDate.Date} - {endDate.Date}";
+                excelPackage.Workbook.Properties.Subject = $"Апартаменты, свободные в даты {startDate.Date} - {endDate.Date}";
+                excelPackage.Workbook.Properties.Created = DateTime.Now;
+                //плучаем лист по имени.
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets["ApartamentsByDate"];
+                //получаем списко пользователей и в цикле заполняем лист данными
+                int startLine = 2;
+
+                List<Apartaments> apartaments = new List<Apartaments>();
+
+                foreach (Apartaments app in _context.Apartaments.ToList())
+                {
+                    if (!_context.Bookings.Any(b => b.ApartamentId == app.Id &&
+                        ((b.StartTime >= startDate && b.EndTime <= startDate) || (b.StartTime >= endDate && b.EndTime <= endDate))))
+                    {
+                        apartaments.Add(app);
+                    }
+                }
+
+                apartaments.AddRange(_context.Set<Apartaments>().Where(a => !apartaments.Contains(a)));
+
+
+                foreach (var apartament in apartaments)
+                {
+                    worksheet.Cells[startLine, 1].Value = apartament.Number;
+                    worksheet.Cells[startLine, 2].Value = apartament.Area;
+                    worksheet.Cells[startLine, 3].Value = apartament.Tariff.Price + (apartament.Area * 50) + (int)(0.5 * apartament.Services.Sum(s => s.Price));
+                    worksheet.Cells[startLine, 4].Value = apartament.Tariff.Name;
+                    worksheet.Cells[startLine, 5].Value = String.Join(Environment.NewLine, apartament.Services.Select(s => s.Name));
+
+                    startLine++;
+                }
+                //созраняем в новое место
+                excelPackage.SaveAs(fr);
+            }
+            // Тип файла - content-type
+            string file_type =
+           "application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet";
+            // Имя файла - необязательно
+            string file_name = $"Список апартаментов, свободных в даты {startDate.ToShortDateString()} - {endDate.Date.ToShortDateString()}.xlsx";
+            return File(result, file_type, file_name);
+        }
 
         private bool ApartamentsExists(int id)
         {

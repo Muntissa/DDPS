@@ -53,7 +53,12 @@
 }
 else
 {
-    <h1 class="text-center mb-4">Заказы клиенты @Model.Client.SecondName @Model.Client.FirstName @Model.Client.LastName</h1>
+    <h1 class="text-center mb-4">Заказы клиента @Model.Client.SecondName @Model.Client.FirstName @Model.Client.LastName</h1>
+    <div class="row">
+        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 text-end">
+            <a asp-action="GetBookingsForCurrentClient" asp-route-id="@Model.Client.Id" type="submit" class="btn btn-success">Отчет по мои заказам</a>
+        </div>
+    </div>
     <div class="container-fluid mt-5">
         <div class="table-responsive mt-4">
             <table class="table table-striped">
@@ -83,7 +88,7 @@ else
                                     <br />
                                 }
                             </td>
-                            <td>@item.TotalPrice</td>
+                            <td>@(item.Services.Sum(s => s.Price) + (item.EndTime - item.StartTime).Days * (item.Apartament.Tariff.Price + (item.Apartament.Area * 50) + (int)(0.5 * item.Apartament.Services.Sum(s => s.Price))))</td>
                             <td>
                                 <a asp-controller="Bookings" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
                             </td>

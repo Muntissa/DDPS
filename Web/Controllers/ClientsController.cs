@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using DDPS.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using OfficeOpenXml;
 
 namespace DDPS.Web.Controllers
 {
@@ -15,11 +16,13 @@ namespace DDPS.Web.Controllers
     {
         private readonly HotelContext _context;
         private readonly UserManager<DDPSUser> _userManager;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public ClientsController(HotelContext context, UserManager<DDPSUser> userManager)
+        public ClientsController(HotelContext context, UserManager<DDPSUser> userManager, IWebHostEnvironment appEnvironment)
         {
             _context = context;
             _userManager = userManager;
+            _appEnvironment = appEnvironment;
         }
 
 
@@ -179,6 +182,61 @@ namespace DDPS.Web.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<FileResult> GetBookingsForCurrentClient(int? id)
+        {
+            // Путь к файлу с шаблоном
+            string path = "/Reports/OrdersForCurrentClientTemplate.xlsx";
+            //Путь к файлу с результатом
+            string result = "/Reports/OrdersForCurrentClient.xlsx";
+            FileInfo fi = new FileInfo(_appEnvironment.WebRootPath + path);
+            FileInfo fr = new FileInfo(_appEnvironment.WebRootPath + result);
+            //будем использовть библитотеку не для коммерческого использования
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            //открываем файл с шаблоном
+
+            var client = await _context.Clients.FirstOrDefaultAsync(m => m.Id == id);
+
+            using (ExcelPackage excelPackage = new ExcelPackage(fi))
+            {
+                //устанавливаем поля документа
+                excelPackage.Workbook.Properties.Author = "Андронов И.А.";
+                excelPackage.Workbook.Properties.Title = $"Список всех заказов клиента {client.SecondName} {client.FirstName} {client.LastName}";
+                excelPackage.Workbook.Properties.Subject = $"Заказы клиента {client.SecondName} {client.FirstName} {client.LastName}";
+                excelPackage.Workbook.Properties.Created = DateTime.Now;
+                //плучаем лист по имени.
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets["ClientsOrders"];
+                //получаем списко пользователей и в цикле заполняем лист данными
+                int startLine = 2;
+
+                var bookings = _context.Bookings.Where(c => c.ClientId == id && c.IsActive)
+                    .Include(a => a.Apartament).ThenInclude(f => f.Facilities)
+                    .Include(a => a.Apartament).ThenInclude(s => s.Services)
+                    .Include(c => c.Client)
+                    .Include(s => s.Services).ToList();
+
+                foreach (var booking in bookings)
+                {
+                    worksheet.Cells[startLine, 1].Value = booking.Apartament.Number;
+                    worksheet.Cells[startLine, 2].Value = booking.Apartament.Tariff.Name;
+                    worksheet.Cells[startLine, 3].Value = booking.StartTime.ToString("dd-MM-yyyy");
+                    worksheet.Cells[startLine, 4].Value = booking.EndTime.ToString("dd-MM-yyyy");
+                    worksheet.Cells[startLine, 5].Value = String.Join(Environment.NewLine, booking.Services.Select(s => s.Name));
+                    worksheet.Cells[startLine, 6].Value = String.Join(Environment.NewLine, booking.Apartament.Services.Select(s => s.Name));
+                    worksheet.Cells[startLine, 7].Value = (booking.Services.Sum(s => s.Price) + (booking.EndTime - booking.StartTime).Days * (booking.Apartament.Tariff.Price + (booking.Apartament.Area * 50) + (int)(0.5 * booking.Apartament.Services.Sum(s => s.Price))));
+
+                    startLine++;
+                }
+                //созраняем в новое место
+                excelPackage.SaveAs(fr);
+            }
+            // Тип файла - content-type
+            string file_type = "application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet";
+            // Имя файла - необязательно
+            string file_name = $"{client.SecondName} {client.FirstName[0]}. {client.LastName[0]}. Bookings.xlsx";
+            
+            return File(result, file_type, file_name);
         }
 
         private bool ClientsExists(int id)
