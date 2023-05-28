@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.BookingsArchive>
 
 @{
-    ViewData["Title"] = "Архив заказов";
+    ViewData["Title"] = "Архив бронировний";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid mt-5">
-    <h1 class="text-center mb-4">Архив заказов</h1>
+    <h1 class="text-center mb-4">Архив бронирований</h1>
     <div class="row"></div>
     <div class="table-responsive mt-4">
         <table class="table table-striped">
@@ -17,7 +17,7 @@
                     <th scope="col">Заказные услуги</th>
                     <th scope="col">Начальная дата</th>
                     <th scope="col">Конечная дата</th>
-                    <th scope="col">Дата закрытия заказа</th>
+                    <th scope="col">Дата закрытия бронирования</th>
                 </tr>
             </thead>
             <tbody>

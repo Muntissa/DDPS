@@ -49,11 +49,11 @@
 <hr />
 @if (!Model.Bookings.Any())
 {
-    <h1 class="text-center mb-4">Заказов нет</h1>
+    <h1 class="text-center mb-4">Бронирований нет</h1>
 }
 else
 {
-    <h1 class="text-center mb-4">Заказы клиента @Model.Client.SecondName @Model.Client.FirstName @Model.Client.LastName</h1>
+    <h1 class="text-center mb-4">Бронирования клиента @Model.Client.SecondName @Model.Client.FirstName @Model.Client.LastName</h1>
     <div class="row">
         <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 text-end">
             <a asp-action="GetBookingsForCurrentClient" asp-route-id="@Model.Client.Id" type="submit" class="btn btn-success">Отчет по мои заказам</a>

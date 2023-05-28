@@ -177,6 +177,10 @@ namespace DDPS.Web.Controllers
             var clients = await _context.Clients.FindAsync(id);
             if (clients != null)
             {
+                foreach(var booking in _context.Bookings.Where(b => b.Client.Id == clients.Id).ToList())
+                {
+                    _context.Bookings.Remove(booking);
+                }
                 _context.Clients.Remove(clients);
             }
             

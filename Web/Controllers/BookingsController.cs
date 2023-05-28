@@ -79,7 +79,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("FirstStepClient", "NewBooking");
         }
 
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin, manager, client")]
         public IActionResult GetServicesTabless()
         {
             return RedirectToAction("Index", "Services");

@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<DDPS.Api.Entities.Bookings>
 
 @{
-    ViewData["Title"] = "Заказы";
+    ViewData["Title"] = "Бронирование";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid mt-5">
-    <h1 class="text-center mb-4">Заказы</h1>
-    <div class="row">
-        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
-            <a asp-action="Create" class="btn btn-success">Создать новый заказ</a>
+    <h1 class="text-center mb-4">Бронирования</h1>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-4 text-center">
+            <a asp-action="Create" class="btn btn-success">Создать новую бронь</a>
         </div>
-        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 text-end">
+        <div class="col-md-4 text-center">
+            <a asp-action="GetAllBookingsReport" class="btn btn-warning">Отчет по всем бронированиям</a>
+        </div>
+        <div class="col-md-4 text-center">
             <a asp-action="GetServicesTabless" class="btn btn-success">Все сервисы</a>
-        </div>
-        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0 text-end">
-            <a asp-action="GetAllBookingsReport" class="btn btn-success">Отчет по всем заказам</a>
         </div>
     </div>
     <div class="table-responsive mt-4">
@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.OrderBy(b => b.Client.SecondName))
                 {
                     <tr>
                         <td>@item.Apartament.Number</td>

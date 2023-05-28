@@ -36,7 +36,7 @@ namespace DDPS.Web.Controllers
             }
             else
             {
-                return View(await _context.Bookings.Where(b => b.Client.Email == user.Email).Select(b => b.Apartament).Include(a => a.Tariff).ToListAsync());
+                return View(await _context.Bookings.Where(b => b.Client.Email == user.Email).Select(b => b.Apartament).ToListAsync());
             }
             
         }
@@ -68,7 +68,7 @@ namespace DDPS.Web.Controllers
             return RedirectToAction("FirstStep", "NewApartament");
         }
 
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin, manager, client")]
         public IActionResult GetTariffTables()
         {
             return RedirectToAction("Index", "Tariffs");
@@ -283,7 +283,7 @@ namespace DDPS.Web.Controllers
 
                 List<Apartaments> apartaments = new List<Apartaments>();
 
-                foreach (Apartaments app in _context.Apartaments.ToList())
+                foreach (Apartaments app in _context.Apartaments)
                 {
                     if (!_context.Bookings.Any(b => b.ApartamentId == app.Id &&
                         ((b.StartTime >= startDate && b.EndTime <= startDate) || (b.StartTime >= endDate && b.EndTime <= endDate))))
@@ -293,7 +293,6 @@ namespace DDPS.Web.Controllers
                 }
 
                 apartaments.AddRange(_context.Set<Apartaments>().Where(a => !apartaments.Contains(a)));
-
 
                 foreach (var apartament in apartaments)
                 {

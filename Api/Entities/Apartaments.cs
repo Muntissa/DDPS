@@ -5,22 +5,6 @@ namespace DDPS.Api.Entities
 {
     public class Apartaments
     {
-/*        [NotMapped]
-        private int _totalPrice
-        {
-            get
-            {
-                try
-                {
-                    return this.Tariff.Price + (this.Area * 50) + (int)(0.5 * this.Services.Sum(s => s.Price));
-                }
-                catch (Exception ex)
-                {
-                    return 0;
-                }
-            }
-        }*/
-
         public int Id { get; set; }
 
         [Display(Name = "Порядковый номер")]
@@ -32,9 +16,6 @@ namespace DDPS.Api.Entities
         [Display(Name = "Площадь")]
         public int Area { get; set; }
 
-/*        [Display(Name = "Цена")]
-        public int Price { get; set; }
-*/
         [Display(Name = "Зарезервировано")]
         public bool Reservation { get; set; } = false;
 

@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+<Node Id="IModel" Label="HotelContext" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" PropertyAccessMode="PropertyAccessMode.Default" ProductVersion="7.0.3" Annotations="BaseTypeDiscoveryConvention:DerivedTypes: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.List`1[Microsoft.EntityFrameworkCore.Metadata.IConventionEntityType]]
+Proxies:ChangeTracking: False
+Proxies:CheckEquality: False
+Proxies:LazyLoading: True
+RelationshipDiscoveryConvention:InverseNavigationCandidates: System.Collections.Generic.Dictionary`2[System.Type,System.Collections.Generic.SortedSet`1[System.Type]]" Category="Model" Group="Expanded" />
+<Node Id = "ApartamentsFacilities" Label="ApartamentsFacilities" Name="ApartamentsFacilities" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ApartamentsServices" Label="ApartamentsServices" Name="ApartamentsServices" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ApartamentsFacilities.ApartamentsId" Label="ApartamentsId (int)" Name="ApartamentsId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ApartamentsFacilities.FacilitiesId" Label="FacilitiesId (int)" Name="FacilitiesId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ApartamentsFacilities.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsServices" Label="BookingsServices" Name="BookingsServices" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "ApartamentsServices.ApartamentsId" Label="ApartamentsId (int)" Name="ApartamentsId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ApartamentsServices.ServicesId" Label="ServicesId (int)" Name="ServicesId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "ApartamentsServices.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Apartaments" Label="Apartaments" Name="Apartaments" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: Apartaments
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "BookingsServices.BookingsId" Label="BookingsId (int)" Name="BookingsId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsServices.ServicesId" Label="ServicesId (int)" Name="ServicesId" Category="Property Primary" Type="int" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="True" IsRequired="True" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsServices.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Bookings" Label="Bookings" Name="Bookings" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: Bookings
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Apartaments.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Apartaments.Tariff" Label="Tariff (1)" Name="Tariff" Category="Navigation Property" Type="Tariffs"  Field="" Dependent="" Principal="Tariffs" Inverse="" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "Apartaments.Facilities" Label="Facilities (1)" Name="Facilities" Category="Navigation Property" Type="List&lt;Facilities&gt;"  Field="" Dependent="" Principal="" Inverse="Apartaments" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "Apartaments.Services" Label="Services (1)" Name="Services" Category="Navigation Property" Type="List&lt;Services&gt;"  Field="" Dependent="" Principal="" Inverse="Apartaments" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "Apartaments.LazyLoader" Label="LazyLoader (1)" Name="LazyLoader" Category="Navigation Property" Type="n"  Field="" Dependent="" Principal="" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Apartaments.Area" Label="Area (int)" Name="Area" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Apartaments.Number" Label="Number (int)" Name="Number" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Apartaments.Photo" Label="Photo (string)" Name="Photo" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Apartaments.Reservation" Label="Reservation (bool)" Name="Reservation" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Apartaments.TariffId" Label="TariffId (int?)" Name="TariffId" Category="Property Foreign" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive" Label="BookingsArchive" Name="BookingsArchive" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: BookingsArchive
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Bookings.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Bookings.Apartament" Label="Apartament (1)" Name="Apartament" Category="Navigation Property" Type="Apartaments"  Field="" Dependent="" Principal="Apartaments" Inverse="" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "Bookings.Client" Label="Client (1)" Name="Client" Category="Navigation Property" Type="Clients"  Field="" Dependent="" Principal="Clients" Inverse="" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "Bookings.Services" Label="Services (1)" Name="Services" Category="Navigation Property" Type="List&lt;Services&gt;"  Field="" Dependent="" Principal="" Inverse="Bookings" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "Bookings.LazyLoader" Label="LazyLoader (1)" Name="LazyLoader" Category="Navigation Property" Type="n"  Field="" Dependent="" Principal="" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "Bookings.ApartamentId" Label="ApartamentId (int?)" Name="ApartamentId" Category="Property Foreign" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Bookings.ClientId" Label="ClientId (int?)" Name="ClientId" Category="Property Foreign" Type="int?" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Bookings.EndTime" Label="EndTime (DateTime)" Name="EndTime" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Bookings.IsActive" Label="IsActive (bool)" Name="IsActive" Category="Property Required" Type="bool" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Bookings.StartTime" Label="StartTime (DateTime)" Name="StartTime" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Clients" Label="Clients" Name="Clients" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: Clients
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "BookingsArchive.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "BookingsArchive.ApartamentAdditionalServices" Label="ApartamentAdditionalServices (*)" Name="ApartamentAdditionalServices" Category="Navigation Collection" Type="List&lt;Services&gt;"  Field="" Dependent="Services" Principal="" Inverse="" PropertyAccessMode="PropertyAccessMode.Field" />
+<Node Id = "BookingsArchive.LazyLoader" Label="LazyLoader (1)" Name="LazyLoader" Category="Navigation Property" Type="n"  Field="" Dependent="" Principal="" Inverse="" PropertyAccessMode="PropertyAccessMode.Default" />
+<Node Id = "BookingsArchive.ApartamentNumber" Label="ApartamentNumber (int)" Name="ApartamentNumber" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive.BookingEndTime" Label="BookingEndTime (DateTime)" Name="BookingEndTime" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive.BookingStartTime" Label="BookingStartTime (DateTime)" Name="BookingStartTime" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive.ClientFirstName" Label="ClientFirstName (string)" Name="ClientFirstName" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive.ClientLastName" Label="ClientLastName (string)" Name="ClientLastName" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive.ClientSecondName" Label="ClientSecondName (string)" Name="ClientSecondName" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "BookingsArchive.InActiveTime" Label="InActiveTime (DateTime)" Name="InActiveTime" Category="Property Required" Type="DateTime" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Facilities" Label="Facilities" Name="Facilities" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: Facilities
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Clients.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Clients.Email" Label="Email (string)" Name="Email" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Clients.FirstName" Label="FirstName (string)" Name="FirstName" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Clients.LastName" Label="LastName (string)" Name="LastName" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Clients.PhoneNumber" Label="PhoneNumber (string)" Name="PhoneNumber" Category="Property Optional" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Clients.SecondName" Label="SecondName (string)" Name="SecondName" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Clients.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services" Label="Services" Name="Services" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: Services
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Facilities.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Facilities.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Facilities.Apartaments" Label="Apartaments (List&lt;Apartaments&gt;)" Name="Apartaments" Category="Property Optional" Type="List&lt;Apartaments&gt;" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Field" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="PropertyAccessMode: Field" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Facilities.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Tariffs" Label="Tariffs" Name="Tariffs" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="NavigationAccessMode: Field
+Relational:TableName: Tariffs
+RelationshipDiscoveryConvention:NavigationCandidates: System.Collections.Immutable.ImmutableSortedDictionary`2[System.Reflection.PropertyInfo,System.ValueTuple`2[System.Type,System.Nullable`1[System.Boolean]]]" Category="EntityType" Group="Expanded" />
+<Node Id = "Services.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Services.BookingsArchiveId" Label="BookingsArchiveId (int?)" Name="BookingsArchiveId" Category="Property Foreign" Type="int?" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="True" IsRequired="False" IsIndexed="True" IsShadow="True" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services.Description" Label="Description (string)" Name="Description" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services.Price" Label="Price (int)" Name="Price" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services.Apartaments" Label="Apartaments (List&lt;Apartaments&gt;)" Name="Apartaments" Category="Property Optional" Type="List&lt;Apartaments&gt;" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Field" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="PropertyAccessMode: Field" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services.Bookings" Label="Bookings (List&lt;Bookings&gt;)" Name="Bookings" Category="Property Optional" Type="List&lt;Bookings&gt;" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Field" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="PropertyAccessMode: Field" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Services.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Tariffs" Label="Tariffs" Name="Tariffs" BaseClass="" IsAbstract="False" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot"  Annotations="" Category="EntityType" Group="Expanded" />
+<Node Id = "Tariffs.Id" Label="Id (int)" Name="Id" Category="Property Primary" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="True" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="ValueGenerated.OnAdd" />
+<Node Id = "Tariffs.Description" Label="Description (string)" Name="Description" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Tariffs.Name" Label="Name (string)" Name="Name" Category="Property Required" Type="string" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Tariffs.Price" Label="Price (int)" Name="Price" Category="Property Required" Type="int" MaxLength="None" Field="" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="True" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+<Node Id = "Tariffs.LazyLoader" Label="LazyLoader (ILazyLoader)" Name="LazyLoader" Category="Property Optional" Type="ILazyLoader" MaxLength="None" Field="nofield" PropertyAccessMode="PropertyAccessMode.Default" BeforeSaveBehavior="PropertySaveBehavior.Save" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="" IsPrimaryKey="False" IsForeignKey="False" IsRequired="False" IsIndexed="False" IsShadow="False" IsAlternateKey="False" IsConcurrencyToken="False" IsUnicode="True" ValueGenerated="None" />
+  </Nodes>
+  <Links>
+<Link Source = "IModel" Target="ApartamentsFacilities" Category="Contains" />
+<Link Source = "IModel" Target="ApartamentsServices" Category="Contains" />
+<Link Source = "ApartamentsFacilities" Target="ApartamentsFacilities.ApartamentsId" Category="Contains" />
+<Link Source="ApartamentsFacilities" Target="Apartaments" From="ApartamentsFacilities.ApartamentsId" To="Apartaments.Id" Name="ApartamentsFacilities -> Apartaments" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="ApartamentsFacilities" Target="Facilities" From="ApartamentsFacilities.FacilitiesId" To="Facilities.Id" Name="ApartamentsFacilities -> Facilities" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "ApartamentsFacilities" Target="ApartamentsFacilities.FacilitiesId" Category="Contains" />
+<Link Source = "ApartamentsFacilities" Target="ApartamentsFacilities.LazyLoader" Category="Contains" />
+<Link Source = "IModel" Target="BookingsServices" Category="Contains" />
+<Link Source = "ApartamentsServices" Target="ApartamentsServices.ApartamentsId" Category="Contains" />
+<Link Source="ApartamentsServices" Target="Apartaments" From="ApartamentsServices.ApartamentsId" To="Apartaments.Id" Name="ApartamentsServices -> Apartaments" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="ApartamentsServices" Target="Services" From="ApartamentsServices.ServicesId" To="Services.Id" Name="ApartamentsServices -> Services" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "ApartamentsServices" Target="ApartamentsServices.ServicesId" Category="Contains" />
+<Link Source = "ApartamentsServices" Target="ApartamentsServices.LazyLoader" Category="Contains" />
+<Link Source = "IModel" Target="Apartaments" Category="Contains" />
+<Link Source = "BookingsServices" Target="BookingsServices.BookingsId" Category="Contains" />
+<Link Source="BookingsServices" Target="Bookings" From="BookingsServices.BookingsId" To="Bookings.Id" Name="BookingsServices -> Bookings" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="BookingsServices" Target="Services" From="BookingsServices.ServicesId" To="Services.Id" Name="BookingsServices -> Services" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "BookingsServices" Target="BookingsServices.ServicesId" Category="Contains" />
+<Link Source = "BookingsServices" Target="BookingsServices.LazyLoader" Category="Contains" />
+<Link Source = "IModel" Target="Bookings" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Tariff" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Facilities" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Services" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.LazyLoader" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Id" Category="Contains" />
+<Link Source="Apartaments" Target="Tariffs" From="Apartaments.TariffId" To="Tariffs.Id" Name="Apartaments -> Tariffs" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Apartaments" Target="Apartaments.Area" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Number" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Photo" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.Reservation" Category="Contains" />
+<Link Source = "Apartaments" Target="Apartaments.TariffId" Category="Contains" />
+<Link Source = "IModel" Target="BookingsArchive" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.Apartament" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.Client" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.Services" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.LazyLoader" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.Id" Category="Contains" />
+<Link Source="Bookings" Target="Apartaments" From="Bookings.ApartamentId" To="Apartaments.Id" Name="Bookings -> Apartaments" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source="Bookings" Target="Clients" From="Bookings.ClientId" To="Clients.Id" Name="Bookings -> Clients" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Bookings" Target="Bookings.ApartamentId" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.ClientId" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.EndTime" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.IsActive" Category="Contains" />
+<Link Source = "Bookings" Target="Bookings.StartTime" Category="Contains" />
+<Link Source = "IModel" Target="Clients" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.ApartamentAdditionalServices" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.LazyLoader" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.Id" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.ApartamentNumber" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.BookingEndTime" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.BookingStartTime" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.ClientFirstName" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.ClientLastName" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.ClientSecondName" Category="Contains" />
+<Link Source = "BookingsArchive" Target="BookingsArchive.InActiveTime" Category="Contains" />
+<Link Source = "IModel" Target="Facilities" Category="Contains" />
+<Link Source = "Clients" Target="Clients.Id" Category="Contains" />
+<Link Source = "Clients" Target="Clients.Email" Category="Contains" />
+<Link Source = "Clients" Target="Clients.FirstName" Category="Contains" />
+<Link Source = "Clients" Target="Clients.LastName" Category="Contains" />
+<Link Source = "Clients" Target="Clients.PhoneNumber" Category="Contains" />
+<Link Source = "Clients" Target="Clients.SecondName" Category="Contains" />
+<Link Source = "Clients" Target="Clients.LazyLoader" Category="Contains" />
+<Link Source = "IModel" Target="Services" Category="Contains" />
+<Link Source = "Facilities" Target="Facilities.Id" Category="Contains" />
+<Link Source = "Facilities" Target="Facilities.Name" Category="Contains" />
+<Link Source = "Facilities" Target="Facilities.Apartaments" Category="Contains" />
+<Link Source = "Facilities" Target="Facilities.LazyLoader" Category="Contains" />
+<Link Source = "IModel" Target="Tariffs" Category="Contains" />
+<Link Source = "Services" Target="Services.Id" Category="Contains" />
+<Link Source="Services" Target="BookingsArchive" From="Services.BookingsArchiveId" To="BookingsArchive.Id" Name="Services -> BookingsArchive" Annotations="" IsUnique="False" Label="1:*" Category="Foreign Key" />
+<Link Source = "Services" Target="Services.BookingsArchiveId" Category="Contains" />
+<Link Source = "Services" Target="Services.Description" Category="Contains" />
+<Link Source = "Services" Target="Services.Name" Category="Contains" />
+<Link Source = "Services" Target="Services.Price" Category="Contains" />
+<Link Source = "Services" Target="Services.Apartaments" Category="Contains" />
+<Link Source = "Services" Target="Services.Bookings" Category="Contains" />
+<Link Source = "Services" Target="Services.LazyLoader" Category="Contains" />
+<Link Source = "IModel" Target="Tariffs" Category="Contains" />
+<Link Source = "Tariffs" Target="Tariffs.Id" Category="Contains" />
+<Link Source = "Tariffs" Target="Tariffs.Description" Category="Contains" />
+<Link Source = "Tariffs" Target="Tariffs.Name" Category="Contains" />
+<Link Source = "Tariffs" Target="Tariffs.Price" Category="Contains" />
+<Link Source = "Tariffs" Target="Tariffs.LazyLoader" Category="Contains" />
+  </Links>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+  <Properties>
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="Field"  Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type"  Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />    
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass"  Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

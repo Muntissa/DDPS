@@ -25,7 +25,7 @@
                             <input type="date" class="form-control" name="endDate" required>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Отчет по доступным апартаментам</button>
+                            <button type="submit" class="btn btn-warning">Отчет по доступным апартаментам</button>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.OrderBy(a => a.Number))
                 {
                     <tr>
                         <td>@item.Number</td>

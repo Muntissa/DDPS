@@ -101,16 +101,16 @@ namespace DDPS.Web.Controllers
                 }
             }
 
-            var servicesList = (int[])TempData.Peek("apartamentServices");
-            var facilitiesList = (int[])TempData.Peek("apartamentFacilities");
+            var servicesList = (int[])TempData.Peek("apartamentServices") ?? new int[0];
+            var facilitiesList = (int[])TempData.Peek("apartamentFacilities") ?? new int[0];
 
             var newApartament = new Apartaments()
             {
                 Number = (int)TempData.Peek("apartamentNumber"),
                 Area = (int)TempData.Peek("apartamentArea"),
                 Tariff = _context.Tariffs.Find((int)TempData.Peek("apartamentTariffId")),
-                Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList() ?? new List<Services>(),
-                Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList() ?? new List<Facilities>(),
+                Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList(),
+                Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList(),
                 Photo = ("/files/" + fileName) ?? ("/files/" + "NotFound.png"),
             };
 
