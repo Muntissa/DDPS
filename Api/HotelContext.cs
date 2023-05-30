@@ -19,5 +19,6 @@ namespace DDPS.Api
         { 
             options.UseLazyLoadingProxies().UseSqlite("Data Source = HotelDB.db"); options.LogTo(message => System.Diagnostics.Debug.WriteLine(message)); 
         }
+
     }
 }

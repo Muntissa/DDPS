@@ -111,11 +111,16 @@ namespace DDPS.Web.Controllers
                 Tariff = _context.Tariffs.Find((int)TempData.Peek("apartamentTariffId")),
                 Services = _context.Services.Where(s => servicesList.Contains(s.Id)).ToList(),
                 Facilities = _context.Facilities.Where(s => facilitiesList.Contains(s.Id)).ToList(),
-                Photo = ("/files/" + fileName) ?? ("/files/" + "NotFound.png"),
+                Photo = ("/files/" + fileName) == "/files/" ? ("/files/" + "NotFound.png") : ("/files/" + fileName)
             };
 
             _context.Apartaments.Add(newApartament);
             _context.SaveChanges();
+
+            if ((bool?)TempData["FromNewBookingToApartaments"] == true)
+            {
+                return RedirectToAction("FourthStepApartament", "NewBooking");
+            }
 
             return RedirectToAction("Index", "Apartaments");
         }
@@ -129,7 +134,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateTariff()
         {
-            return RedirectToAction("Create", "Tariffs");
+            return RedirectToAction("Create", "Tariffs", new { FromNewApartament = true });
         }
 
         public IActionResult EditFacility(int facilityId)
@@ -139,7 +144,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateFacility()
         {
-            return RedirectToAction("Create", "Facilities");
+            return RedirectToAction("Create", "Facilities", new { FromNewApartament = true });
         }
 
         public IActionResult EditService(int serviceId)
@@ -149,7 +154,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateService()
         {
-            return RedirectToAction("Create", "Services");
+            return RedirectToAction("Create", "Services", new { FromNewApartament = true });
         }
         #endregion
     }

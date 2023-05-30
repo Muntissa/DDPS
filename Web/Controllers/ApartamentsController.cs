@@ -27,6 +27,8 @@ namespace DDPS.Web.Controllers
         // GET: Apartaments
         public async Task<IActionResult> Index()
         {
+            TempData.Clear();
+
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (await _userManager.IsInRoleAsync(user, "admin") || await _userManager.IsInRoleAsync(user, "manager"))
@@ -63,8 +65,12 @@ namespace DDPS.Web.Controllers
 
         [Authorize(Roles = "admin")]
         // GET: Apartaments/Create
-        public IActionResult Create()
+        public IActionResult Create(bool? FromNewBooking)
         {
+            if (FromNewBooking.HasValue && FromNewBooking.Value is true)
+            {
+                TempData["FromNewBookingToApartaments"] = FromNewBooking.Value;
+            }
             return RedirectToAction("FirstStep", "NewApartament");
         }
 
@@ -175,10 +181,7 @@ namespace DDPS.Web.Controllers
             var apartaments = await _context.Apartaments.FindAsync(id);
             if (apartaments != null)
             {
-                var booking = _context.Bookings.Where(a => a.ApartamentId == id).FirstOrDefault();
-
-                if (booking != null)
-                    _context.Bookings.Remove(booking);
+                _context.Bookings.RemoveRange(_context.Bookings.Where(a => a.ApartamentId == apartaments.Id));
 
                 _context.Apartaments.Remove(apartaments);
 
@@ -283,16 +286,18 @@ namespace DDPS.Web.Controllers
 
                 List<Apartaments> apartaments = new List<Apartaments>();
 
-                foreach (Apartaments app in _context.Apartaments)
+                foreach (Apartaments app in _context.Apartaments.ToList())
                 {
                     if (!_context.Bookings.Any(b => b.ApartamentId == app.Id &&
-                        ((b.StartTime >= startDate && b.EndTime <= startDate) || (b.StartTime >= endDate && b.EndTime <= endDate))))
+                                    ((b.StartTime >= startDate && b.StartTime < endDate) ||
+                                     (b.EndTime > startDate && b.EndTime <= endDate) ||
+                                     (b.StartTime <= startDate && b.EndTime >= endDate))))
                     {
                         apartaments.Add(app);
                     }
                 }
 
-                apartaments.AddRange(_context.Set<Apartaments>().Where(a => !apartaments.Contains(a)));
+                /* apartaments.AddRange(_context.Set<Apartaments>().Where(a => !apartaments.Contains(a)));*/
 
                 foreach (var apartament in apartaments)
                 {

@@ -29,6 +29,7 @@ namespace DDPS.Web.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
+            TempData.Clear();
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (await _userManager.IsInRoleAsync(user, "admin") || await _userManager.IsInRoleAsync(user, "manager"))
@@ -70,8 +71,12 @@ namespace DDPS.Web.Controllers
 
         [Authorize(Roles = "admin, manager")]
         // GET: Clients/Create
-        public IActionResult Create()
+        public IActionResult Create(bool? FromNewBooking)
         {
+            if(FromNewBooking.HasValue && FromNewBooking.Value is true)
+            {
+                TempData["FromNewBookingToClients"] = FromNewBooking.Value;
+            }
             return View();
         }
 
@@ -87,6 +92,11 @@ namespace DDPS.Web.Controllers
             {
                 _context.Add(clients);
                 await _context.SaveChangesAsync();
+                if ((bool?)TempData["FromNewBookingToClients"] == true)
+                {
+                    return RedirectToAction("FirstStepClient", "NewBooking");
+                }
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(clients);

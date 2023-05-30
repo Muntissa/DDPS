@@ -71,16 +71,14 @@ namespace DDPS.Web.Controllers
 
             foreach (Apartaments app in _context.Apartaments.Where(app => app.TariffId == t))
             {
-                if(!_context.Bookings.Any(b => b.ApartamentId == app.Id && 
-                    ((b.StartTime >= s && b.EndTime <= s) || (b.StartTime >= e && b.EndTime <= e))))
+                if(!_context.Bookings.Any(b => b.ApartamentId == app.Id &&
+                                    ((b.StartTime >= s && b.StartTime < e) ||
+                                     (b.EndTime > s && b.EndTime <= e) ||
+                                     (b.StartTime <= s && b.EndTime >= e))))
                 {
                     apartaments.Add(app);
                 }
             }
-
-            var additionalApartaments = _context.Apartaments.ToList();
-
-            apartaments.AddRange(_context.Set<Apartaments>().Where(a => a.TariffId == (int)TempData.Peek("tariffId") && !apartaments.Contains(a)));
 
             return View(apartaments);
         }
@@ -132,7 +130,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateClient()
         {
-            return RedirectToAction("Create", "Clients");
+            return RedirectToAction("Create", "Clients", new { FromNewBooking = true } );
         }
 
         public IActionResult EditTariff(int tariffId)
@@ -142,7 +140,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateTariff()
         {
-            return RedirectToAction("Create", "Tariffs");
+            return RedirectToAction("Create", "Tariffs", new { FromNewBooking = true });
         }
 
         public IActionResult EditApartament(int apartamentId)
@@ -152,7 +150,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateApartament()
         {
-            return RedirectToAction("Create", "Tariffs");
+            return RedirectToAction("Create", "Tariffs", new { FromNewBooking = true });
         }
 
         public IActionResult EditService(int serviceId)
@@ -162,7 +160,7 @@ namespace DDPS.Web.Controllers
 
         public IActionResult CreateService()
         {
-            return RedirectToAction("Create", "Services");
+            return RedirectToAction("Create", "Services", new { FromNewBooking = true });
         }
         #endregion
     }

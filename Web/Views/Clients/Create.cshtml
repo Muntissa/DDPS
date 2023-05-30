@@ -17,7 +17,7 @@
 
                         <div class="form-group">
                             <label asp-for="SecondName">Фамилия</label>
-                            <input asp-for="SecondName" class="form-control" />
+                            <input asp-for="SecondName" type="text" pattern="^[A-Za-zА-Яа-яЁё\s]*$" class="form-control" />
                             <span asp-validation-for="SecondName" class="text-danger"></span>
                         </div>
 

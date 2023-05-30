@@ -5,6 +5,7 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-6 mb-4 mb-lg-0">
+            <input type="hidden" name="FromNewBooking" value="true" />
             <a asp-action="CreateClient" class="btn btn-success">Создать нового клиента</a>
         </div>
     </div>
@@ -21,7 +22,7 @@
         <tbody>
             @if (Model != null)
             {
-                @foreach (var item in Model)
+                @foreach (var item in Model.OrderBy(c => c.SecondName))
                 {
                     <tr>
                         <td>

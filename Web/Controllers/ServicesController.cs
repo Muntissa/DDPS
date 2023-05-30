@@ -25,6 +25,7 @@ namespace DDPS.Web.Controllers
         // GET: Services
         public async Task<IActionResult> Index()
         {
+            TempData.Clear();
               return _context.Services != null ? 
                           View(await _context.Services.ToListAsync()) :
                           Problem("Entity set 'HotelContext.Services'  is null.");
@@ -51,8 +52,16 @@ namespace DDPS.Web.Controllers
 
         [Authorize(Roles = "admin")]
         // GET: Services/Create
-        public IActionResult Create()
+        public IActionResult Create(bool? FromNewBooking, bool? FromNewApartament)
         {
+            if (FromNewBooking.HasValue && FromNewBooking.Value is true)
+            {
+                TempData["FromNewBookingToServices"] = FromNewBooking.Value;
+            }
+            if (FromNewApartament.HasValue && FromNewApartament.Value is true)
+            {
+                TempData["FromNewApartamentToServices"] = FromNewApartament.Value;
+            }
             return View();
         }
 
@@ -68,6 +77,14 @@ namespace DDPS.Web.Controllers
             {
                 _context.Add(services);
                 await _context.SaveChangesAsync();
+                if ((bool?)TempData["FromNewBookingToServices"] == true)
+                {
+                    return RedirectToAction("SixthStepServices", "NewBooking");
+                }
+                if ((bool?)TempData["FromNewApartamentToServices"] == true)
+                {
+                    return RedirectToAction("FourthStepServices", "NewApartament");
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(services);

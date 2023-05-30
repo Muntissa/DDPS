@@ -25,7 +25,9 @@ namespace DDPS.Web.Controllers
         // GET: Tariffs
         public async Task<IActionResult> Index()
         {
-              return _context.Tariffs != null ? 
+            TempData.Clear();
+
+            return _context.Tariffs != null ? 
                           View(await _context.Tariffs.ToListAsync()) :
                           Problem("Entity set 'HotelContext.Tariffs'  is null.");
         }
@@ -51,8 +53,17 @@ namespace DDPS.Web.Controllers
 
         [Authorize(Roles = "admin")]
         // GET: Tariffs/Create
-        public IActionResult Create()
+        public IActionResult Create(bool? FromNewBooking, bool? FromNewApartament)
         {
+            if (FromNewBooking.HasValue && FromNewBooking.Value is true)
+            {
+                TempData["FromNewBookingToTariffs"] = FromNewBooking.Value;
+            }
+
+            if (FromNewApartament.HasValue && FromNewApartament.Value is true)
+            {
+                TempData["FromNewApartamentToTariffs"] = FromNewApartament.Value;
+            }
             return View();
         }
 
@@ -68,6 +79,14 @@ namespace DDPS.Web.Controllers
             {
                 _context.Add(tariffs);
                 await _context.SaveChangesAsync();
+                if ((bool?)TempData["FromNewBookingToTariffs"] == true)
+                {
+                    return RedirectToAction("ThirdStepTariff", "NewBooking");
+                }
+                if ((bool?)TempData["FromNewApartamentToTariffs"] == true)
+                {
+                    return RedirectToAction("SecondStepTariff", "NewApartament");
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(tariffs);
@@ -156,8 +175,10 @@ namespace DDPS.Web.Controllers
                 return Problem("Entity set 'HotelContext.Tariffs'  is null.");
             }
             var tariffs = await _context.Tariffs.FindAsync(id);
+            
             if (tariffs != null)
             {
+                _context.Apartaments.RemoveRange(_context.Apartaments.Where(a => a.TariffId == tariffs.Id));
                 _context.Tariffs.Remove(tariffs);
             }
             

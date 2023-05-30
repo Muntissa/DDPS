@@ -24,3 +24,31 @@
         </div>
     }
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let startDateInput = document.querySelector("input[name='startDate']");
+        let endDateInput = document.querySelector("input[name='endDate']");
+
+        // Установка минимальной даты начала равной сегодняшнему дню
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        startDateInput.min = today;
+
+        // Проверка, что конечная дата не раньше начальной
+        function validateDates() {
+            if (endDateInput.value < startDateInput.value) {
+                endDateInput.setCustomValidity("Конечная дата не может быть раньше начальной даты");
+            } else {
+                endDateInput.setCustomValidity("");
+            }
+        }
+
+        startDateInput.addEventListener("change", validateDates);
+        endDateInput.addEventListener("change", validateDates);
+    });
+</script>
